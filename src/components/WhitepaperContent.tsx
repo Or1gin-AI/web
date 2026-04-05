@@ -16,10 +16,42 @@ export default function WhitepaperContent() {
         </p>
         <div className="flex gap-6 mt-4 text-[12px] text-text-faint font-mono">
           <span>v1.0</span>
-          <span>2025.04</span>
+          <span>2026.04</span>
           <span>OriginAI Team</span>
         </div>
       </div>
+
+      {/* Why Claude */}
+      <section className="mb-10 text-center">
+        <p className="text-[13px] text-text-muted mb-1">为什么是 Claude？</p>
+        <h2 className="font-serif text-[22px] font-light text-text mb-1 leading-snug">
+          全球最受欢迎的顶尖 AI 模型
+        </h2>
+        <p className="text-[13px] text-text-secondary max-w-[560px] mx-auto mb-6">
+          Anthropic 年营收超 140 亿美元，连续三年 10 倍增长。Claude Opus 4.6 包揽 Chatbot Arena 人类盲评前两名，SWE-bench 软件工程得分领跑全行业。
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+          {[
+            { value: "$140亿", label: "年营收", sub: "全球增长最快 AI 公司" },
+            { value: "#1 #2", label: "Chatbot Arena", sub: "Opus 4.6 包揽前两名", accent: true },
+            { value: "76.8%", label: "SWE-bench", sub: "业界最高解决率" },
+            { value: "Top 5", label: "代码竞技场", sub: "全部被 Claude 包揽", green: true },
+          ].map((s) => (
+            <div key={s.label} className="bg-bg-card border border-border rounded-xl p-4 text-center">
+              <div className={`font-serif text-[28px] font-light ${s.accent ? "text-brand" : s.green ? "text-green-600" : "text-text"}`}>
+                {s.value}
+              </div>
+              <div className="text-[11px] text-text-faint mt-1">
+                <strong className="text-text block text-[12px]">{s.label}</strong>
+                <span className="text-green-600 text-[10px]">{s.sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-[12px] text-text-faint">
+          数据来源：Anthropic 官方公告 (2026.02)、Chatbot Arena (arena.ai)、SWE-bench 官方排行榜
+        </p>
+      </section>
 
       <div className="h-px bg-border mb-10" />
 
@@ -40,7 +72,7 @@ export default function WhitepaperContent() {
         <div className="space-y-3 mb-6">
           {[
             { icon: "💳", title: "支付方式不过关", desc: "Anthropic 对支付来源有严格风控。使用非美国信用卡、虚拟卡或代充值，极易触发风控导致账号被封，充值的钱也打了水漂。" },
-            { icon: "🌐", title: "IP 不够干净", desc: "使用机场、共享 VPN 或数据中心 IP 注册和使用，轻则频繁弹出验证码、被限流，重则直接封号。就算侥幸开通，也活不了多久。" },
+            { icon: "🌐", title: "IP 不够干净", desc: "网络环境不够干净（数据中心 IP、共享出口、频繁切换节点），轻则频繁弹出验证码、被限流，重则直接封号。就算侥幸开通，也活不了多久。" },
             { icon: "😰", title: "提心吊胆的体验", desc: "即使账号暂时存活，用户也时刻担心被封、担心降智、担心 IP 被标记。在恐惧中使用 AI，完全无法专注于工作本身。" },
           ].map((item) => (
             <div key={item.title} className="flex gap-4 p-4 bg-bg-card border border-border rounded-xl">
@@ -55,7 +87,7 @@ export default function WhitepaperContent() {
 
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">路径二：中转站 — 一鱼三吃的黑色产业链</h3>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          走不了官方路线，很多用户转向「中转站」寻求替代。然而，这个市场的水比想象中更深。绝大多数中转站运营者采用<strong className="text-text font-medium">「一鱼三吃」</strong>的模式：
+          走不了官方路线，很多用户转向「中转站」寻求替代。然而，绝大多数中转站运营者采用<strong className="text-text font-medium">「一鱼三吃」</strong>的模式：
         </p>
         <div className="space-y-3 mb-6">
           {[
@@ -78,26 +110,28 @@ export default function WhitepaperContent() {
         </div>
       </section>
 
-      {/* Section 02 */}
+      {/* Section 02: Core Problem + Solution */}
       <section className="mb-10">
         <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">02</p>
         <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">核心问题：支付与 IP 决定一切</h2>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
           无论是自行注册还是通过中转站，用户遇到的所有问题，归根结底都指向同一个根源：<strong className="text-text font-medium">支付方式和 IP 地址不够干净</strong>。
         </p>
+
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">支付方式的影响</h3>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          Anthropic 对支付来源有严格的风控策略。<strong className="text-text font-medium">美国本土正规信用卡付款几乎不会触发风控</strong>。OriginAI 的所有账号均使用美国本土正规信用卡购买和续费。
+          Anthropic 对支付来源有严格的风控策略。<strong className="text-text font-medium">美国本土正规信用卡付款几乎不会触发风控</strong>。OriginAI 的所有账号均使用美国本土正规信用卡购买和续费，从支付源头杜绝风控风险。
         </p>
+
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">IP 质量的影响</h3>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          IP 质量直接影响<strong className="text-text font-medium">账号存活、访问稳定性和使用体验</strong>：
+          许多用户的网络环境并不理想。但 IP 质量直接影响<strong className="text-text font-medium">账号存活、访问稳定性和使用体验</strong>：
         </p>
         <div className="space-y-2 mb-6">
           {[
-            { text: "账号封禁", desc: "使用数据中心 IP、频繁切换 IP、多账号共用同一 IP 段，均会触发风控。" },
-            { text: "频繁验证与限流", desc: "可疑 IP 触发更频繁的验证和速率限制。" },
-            { text: "「降智」争议", desc: "脏 IP 带来的频繁中断和限流严重影响使用体验。" },
+            { text: "账号封禁", desc: "使用数据中心 IP、频繁切换 IP、多账号共用同一 IP 段，均会触发 Anthropic 风控系统。" },
+            { text: "频繁验证与限流", desc: "可疑 IP 会触发更频繁的 Cloudflare 验证、登录二次验证，以及更早触发的速率限制。" },
+            { text: "「降智」争议", desc: "脏 IP 带来的频繁中断和限流本身就严重影响使用体验。" },
           ].map((item) => (
             <div key={item.text} className="flex gap-3 py-2">
               <div className="shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2" />
@@ -107,36 +141,64 @@ export default function WhitepaperContent() {
             </div>
           ))}
         </div>
+
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">OriginAI 的解法</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {[
             { value: "美国信用卡", label: "本土正规支付，零风控", color: "text-brand" },
             { value: "家庭住宅 IP", label: "非机房，非数据中心", color: "text-green-600" },
             { value: "1:1 独享", label: "一人一号，不共享不超卖", color: "text-text" },
+            { value: "100% 官方", label: "Claude Desktop / .ai / Code", color: "text-brand" },
           ].map((s) => (
             <div key={s.value} className="bg-bg-card border border-border rounded-xl p-4 text-center">
-              <div className={`font-serif text-[24px] font-light ${s.color}`}>{s.value}</div>
+              <div className={`font-serif text-[22px] font-light ${s.color}`}>{s.value}</div>
               <div className="text-[11px] text-text-faint mt-1">{s.label}</div>
             </div>
           ))}
         </div>
-        <div className="border-l-[3px] border-brand bg-brand-light rounded-r-lg px-5 py-3 text-[14px] text-text-secondary italic">
-          我们不替换模型、不拦截数据、不做任何中间处理。您使用的就是官方的 Claude。
+
+        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">使用流程</h3>
+        <div className="flex flex-col sm:flex-row gap-3 mb-4">
+          {[
+            { num: "1", icon: "🔑", title: "OriginAI 准备账号", desc: "美国信用卡购买\nPro / Team / Max 订阅", tag: "我们完成", highlight: false },
+            { num: "2", icon: "📦", title: "用户安装客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
+            { num: "3", icon: "⚡", title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
+            { num: "4", icon: "🤖", title: "使用官方 Claude", desc: "Claude Desktop / .ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
+          ].map((step, i) => (
+            <div key={step.num} className="contents">
+              {i > 0 && <div className="hidden sm:flex items-center text-text-faint text-sm justify-center">→</div>}
+              <div className={`flex-1 rounded-xl border p-4 text-center ${step.highlight ? "border-brand bg-brand-light" : "border-border bg-bg-card"}`}>
+                <div className="w-[22px] h-[22px] rounded-full bg-brand text-white text-[11px] font-mono font-medium flex items-center justify-center mx-auto mb-2">
+                  {step.num}
+                </div>
+                <div className="text-[20px] mb-2">{step.icon}</div>
+                <div className="text-[13px] font-semibold text-text mb-1">{step.title}</div>
+                <div className="text-[11px] text-text-muted leading-relaxed whitespace-pre-line mb-2">{step.desc}</div>
+                <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-mono font-medium ${step.highlight ? "bg-green-50 text-green-600" : "bg-brand-light text-brand"}`}>
+                  {step.tag}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
+        <p className="text-center text-[13px] text-text-muted mt-4">
+          我们不替换模型、不拦截数据、不做任何中间处理。您使用的就是官方的 Claude。
+        </p>
       </section>
 
-      {/* Section 03 */}
+      {/* Section 03: Technical */}
       <section className="mb-10">
         <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">03</p>
         <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">技术实现</h2>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          OriginAI 客户端只做两件事：<strong className="text-text font-medium">转发 Claude 流量</strong>和<strong className="text-text font-medium">自动处理登录验证</strong>。
+          OriginAI 客户端是一款轻量级开源桌面应用，类似于游戏加速器的工作原理——<strong className="text-text font-medium">智能识别 Claude 流量，自动优化网络环境</strong>，确保所有 Claude 请求均通过优质美国家庭 IP 出口。其他网络活动完全不受影响。
         </p>
+
         <div className="bg-bg-alt rounded-xl p-6 mb-6 font-mono text-[12px] text-text-muted overflow-x-auto">
           <div className="flex items-center justify-center gap-2 flex-nowrap min-w-[500px]">
             {[
               { label: "💻 用户设备", desc: "macOS / Win / Linux", highlight: false },
-              { label: "⚡ OriginAI", desc: "只转发 Claude 流量", highlight: true },
+              { label: "⚡ OriginAI", desc: "Claude 智能加速", highlight: true },
               { label: "🏠 美国家庭节点", desc: "住宅 IP", highlight: false },
               { label: "🤖 Claude", desc: "Anthropic 官方", highlight: true },
             ].map((box, i) => (
@@ -150,12 +212,13 @@ export default function WhitepaperContent() {
             ))}
           </div>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { title: "只转发 Claude 流量", desc: "仅识别 claude.ai 和 api.anthropic.com" },
-            { title: "客户端开源", desc: "源码完全公开，用户可自行审计" },
-            { title: "一键登录", desc: "OAuth 验证自动转发" },
-            { title: "双场景兼容", desc: "Claude.ai + Claude Code CLI" },
+            { title: "Claude 专属加速", desc: "智能识别 Claude 流量并优化网络环境，其他网络活动不受任何影响" },
+            { title: "100% 官方渠道", desc: "直接使用 Claude Desktop、Claude.ai 或 Claude Code，全程官方客户端和服务" },
+            { title: "一键登录", desc: "OAuth 验证链接自动转发，一键完成认证，无需手动处理" },
+            { title: "客户端开源", desc: "源码完全公开，用户可自行审计验证，杜绝后门" },
           ].map((item) => (
             <div key={item.title} className="bg-bg-card border border-border rounded-xl p-4">
               <h4 className="text-[13px] font-medium text-text mb-1">{item.title}</h4>
@@ -165,49 +228,40 @@ export default function WhitepaperContent() {
         </div>
       </section>
 
-      {/* Section 04 */}
+      {/* Section 04: Security */}
       <section className="mb-10">
         <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">04</p>
-        <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">安全与隐私设计</h2>
+        <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">安全与隐私</h2>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          核心理念：<strong className="text-text font-medium">「不是我们承诺不看你的数据，而是我们在技术上无法看到你的数据」</strong>。
+          您直接使用 Claude 官方客户端（Claude Desktop、Claude.ai、Claude Code）与 Anthropic 服务器通信。OriginAI 只优化网络环境，<strong className="text-text font-medium">不经手、不中转、不存储您的任何数据</strong>。
         </p>
-        <div className="flex rounded-xl overflow-hidden border border-border mb-6 flex-col sm:flex-row">
-          {[
-            { icon: "📝", title: "您的对话", desc: "浏览器 / CLI 中\nTLS 加密", tag: "已加密 🔒", green: true },
-            { icon: "🚇", title: "OriginAI 隧道", desc: "只转发密文\n无法解密读取", tag: "密文通过", green: false },
-            { icon: "🤖", title: "Anthropic", desc: "官方服务器\n到达后解密处理", tag: "安全到达 ✓", green: true },
-          ].map((s, i) => (
-            <div key={s.title} className={`flex-1 p-5 text-center bg-bg-card ${i < 2 ? "border-b sm:border-b-0 sm:border-r border-border" : ""}`}>
-              <span className="text-xl block mb-2">{s.icon}</span>
-              <h4 className="text-[12px] font-medium text-text mb-1">{s.title}</h4>
-              <p className="text-[11px] text-text-muted leading-relaxed whitespace-pre-line">{s.desc}</p>
-              <span className={`inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-mono font-medium ${s.green ? "bg-green-50 text-green-600" : "bg-bg-alt text-text-muted"}`}>{s.tag}</span>
-            </div>
-          ))}
+
+        <div className="border-l-[3px] border-brand bg-brand-light rounded-r-lg px-5 py-3 text-[14px] text-text-secondary italic mb-6">
+          您的对话从您的设备直达 Anthropic 官方服务器，全程端到端加密。OriginAI 提供的是网络加速，不是中间人——我们在技术上无法看到您的任何对话内容。
         </div>
-        <div className="space-y-2">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { title: "零知识架构", desc: "隧道传输 TLS 加密流量，OriginAI 节点只看到密文。" },
-            { title: "无日志政策", desc: "连接元数据最多保留 7 天，不记录任何请求内容。" },
-            { title: "安全凭证存储", desc: "凭证加密存储，OAuth token 在系统安全存储中。" },
-            { title: "开源透明", desc: "客户端完全开源，支持可复现构建。" },
-            { title: "反检测策略", desc: "固定家庭 IP，TLS 指纹完全透传。" },
+            { title: "100% 官方通信", desc: "您直接与 Anthropic 服务器对话，我们不做任何中间处理" },
+            { title: "端到端加密", desc: "数据在您的设备上加密，在 Anthropic 解密，我们只看到密文" },
+            { title: "客户端开源", desc: "源码完全公开，任何人可审计验证我们没有后门" },
+            { title: "技术上不可见", desc: "我们只做网络加速，数据全程加密，技术上无法触碰您的内容" },
           ].map((item) => (
-            <div key={item.title} className="flex gap-3 py-2">
-              <div className="shrink-0 w-1.5 h-1.5 rounded-full bg-brand mt-2" />
-              <p className="text-[14px] text-text-secondary leading-relaxed">
-                <strong className="text-text font-medium">{item.title}</strong> — {item.desc}
-              </p>
+            <div key={item.title} className="bg-bg-card border border-border rounded-xl p-4">
+              <h4 className="text-[13px] font-medium text-text mb-1">{item.title}</h4>
+              <p className="text-[12px] text-text-muted leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Section 05 */}
+      {/* Section 05: Comparison */}
       <section className="mb-10">
         <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">05</p>
         <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">OriginAI vs 黑产中转站</h2>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          价格低廉的背后，往往是用户的安全和隐私在买单。
+        </p>
         <div className="rounded-xl overflow-hidden border border-border mb-4">
           <table className="w-full border-collapse text-[13px]">
             <thead>
@@ -222,7 +276,7 @@ export default function WhitepaperContent() {
                 ["账号来源", "❌ 黑卡盗刷注册", "✓ 正规渠道合法购买"],
                 ["独享性", "❌ 多人共享 / 超卖", "✓ 1:1 完全独享"],
                 ["模型真实性", "❌ 用低端模型冒充", "✓ 官方账号，保证正版"],
-                ["数据隐私", "❌ 拦截记录，转售蒸馏", "✓ 零知识隧道，无法读取"],
+                ["数据隐私", "❌ 拦截记录，转售蒸馏", "✓ 零知识加密，无法读取"],
                 ["IP 质量", "❌ 机房 IP / 已被标记", "✓ 纯净美国家庭 IP"],
                 ["服务稳定性", "❌ 频繁中断，无保障", "✓ 持续监控，主动维护"],
                 ["客户端安全", "❌ 闭源不透明", "✓ 开源可审计"],
@@ -236,18 +290,24 @@ export default function WhitepaperContent() {
             </tbody>
           </table>
         </div>
+        <p className="text-[14px] text-text-secondary leading-relaxed">
+          对于处理<strong className="text-text font-medium">专有代码、商业机密或敏感信息</strong>的专业用户而言，一次数据泄露的损失，远超数月的服务费用。
+        </p>
       </section>
 
-      {/* Section 06 */}
+      {/* Section 06: Roadmap */}
       <section className="mb-10">
         <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">06</p>
         <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">发展路线图</h2>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          OriginAI 采用「<strong className="text-text font-medium">小步快跑、持续验证</strong>」的迭代策略。
+        </p>
         <div className="space-y-3 mb-6">
           {[
-            { num: "1", phase: "Phase 1 · 验证期", title: "产品验证（第 1-2 月）", desc: "发布桌面客户端 MVP，建立种子用户群。", tags: ["MVP 客户端", "种子用户"], active: true },
-            { num: "2", phase: "Phase 2 · 稳定期", title: "基础设施升级（第 3-4 月）", desc: "自动化运维，账号池扩展至 50 个。", tags: ["自动化运维", "自助开通"], active: false },
-            { num: "3", phase: "Phase 3 · 增长期", title: "规模化运营（第 5-8 月）", desc: "代码开源，IP 池扩展，团队方案。", tags: ["代码开源", "团队方案"], active: false },
-            { num: "4", phase: "Phase 4 · 成熟期", title: "企业级服务（第 9-12 月）", desc: "SLA 保证，安全审计，企业定制。", tags: ["SLA 保证", "企业版"], active: false },
+            { num: "1", phase: "Phase 1 · 验证期", title: "产品验证（第 1-2 月）", desc: "少量账号投入运营，发布跨平台桌面客户端 MVP，建立核心种子用户群，收集反馈快速迭代。", tags: ["MVP 客户端", "种子用户"], active: true },
+            { num: "2", phase: "Phase 2 · 稳定期", title: "基础设施升级（第 3-4 月）", desc: "部署自动化运维监控体系，账号池扩展至 50 个，实现用户自助开通流程。", tags: ["自动化运维", "自助开通"], active: false },
+            { num: "3", phase: "Phase 3 · 增长期", title: "规模化运营（第 5-8 月）", desc: "客户端代码正式开源，扩展 IP 池节点覆盖，上线团队协作方案，探索 Tauri 轻量客户端重写。", tags: ["代码开源", "IP 池扩展", "团队方案"], active: false },
+            { num: "4", phase: "Phase 4 · 成熟期", title: "企业级服务（第 9-12 月）", desc: "提供 SLA 正式保证，引入第三方安全审计，推出企业级定制服务，探索更多 AI 平台接入。", tags: ["SLA 保证", "安全审计", "企业版"], active: false },
           ].map((item) => (
             <div key={item.num} className="relative pl-12 p-4 bg-bg-card border border-border rounded-xl">
               <div className={`absolute left-4 top-5 w-6 h-6 rounded-full border-[1.5px] border-brand flex items-center justify-center font-mono text-[10px] font-medium ${item.active ? "bg-brand text-white" : "bg-brand-light text-brand"}`}>
@@ -264,25 +324,42 @@ export default function WhitepaperContent() {
             </div>
           ))}
         </div>
-      </section>
 
-      {/* Section 07 */}
-      <section className="mb-10">
-        <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">07</p>
-        <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">常见问题</h2>
-        <div className="divide-y divide-border">
+        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">当前进度</h3>
+        <div className="space-y-3">
           {[
-            { q: "OriginAI 和普通 VPN 有什么区别？", a: "OriginAI 只路由 Anthropic 相关流量，不是全局 VPN。延迟更低，不会触发其他网站风控。" },
-            { q: "你们能看到我的对话内容吗？", a: "不能。端到端 TLS 加密，我们只转发密文，技术上无法读取。" },
-            { q: "账号会被封禁吗？", a: "合法购买的账号 + 纯净家庭 IP，风控风险极低。持续监控主动维护。" },
-            { q: "支持哪些使用方式？", a: "Claude.ai 网页版和 Claude Code CLI。支持 macOS、Windows、Linux。" },
-            { q: "如何保证正版模型？", a: "直连 Anthropic 官方服务器，不做任何 API 转发或模型替换。" },
+            { label: "核心架构设计", pct: 100, color: "bg-brand" },
+            { label: "桌面客户端开发", pct: 40, color: "bg-brand" },
+            { label: "美国节点部署", pct: 60, color: "bg-green-600" },
           ].map((item) => (
-            <div key={item.q} className="py-4">
-              <h4 className="text-[14px] font-medium text-text mb-2">{item.q}</h4>
-              <p className="text-[13px] text-text-secondary leading-relaxed">{item.a}</p>
+            <div key={item.label}>
+              <div className="flex justify-between text-[13px] mb-1">
+                <span className="text-text font-medium">{item.label}</span>
+                <span className="text-text-faint font-mono text-[12px]">{item.pct}%</span>
+              </div>
+              <div className="h-2 bg-bg-alt rounded-full overflow-hidden">
+                <div className={`h-full rounded-full ${item.color}`} style={{ width: `${item.pct}%` }} />
+              </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Section 07: Vision */}
+      <section className="mb-10">
+        <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">07</p>
+        <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">展望</h2>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          OriginAI 从 Claude 开始，但这只是我们的起点。
+        </p>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          我们相信，<strong className="text-text font-medium">每一位用户都应该无障碍地使用全球最前沿的 AI 工具</strong>。不论身处何地，不论技术背景，都不应该因为支付壁垒、网络限制或信息不对称而被拒之门外。
+        </p>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          我们的长期目标是成为<strong className="text-text font-medium">高质量纯净 AI 服务的统一入口</strong>——从 Claude 到更多世界级 AI 平台，提供无限制、无妥协、完全透明的访问体验。让用户专注于创造本身，而非与基础设施搏斗。
+        </p>
+        <div className="border-l-[3px] border-brand bg-brand-light rounded-r-lg px-5 py-3 text-[14px] text-text-secondary italic">
+          正本清源，不止于 Claude。我们的愿景是让每一个人都能触及最好的 AI。
         </div>
       </section>
     </article>
