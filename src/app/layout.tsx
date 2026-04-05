@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OriginAI — 极致的 Claude 体验",
+  title: "OriginAI - 为中国用户提供无缝的 AI 体验",
   description:
     "源于官方，忠于原版。OriginAI 为中国用户提供合规账号、纯净家庭 IP、全流程托管的 Claude 订阅服务，享受无缝的 AI 体验。",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "OriginAI — 极致的 Claude 体验",
+    title: "OriginAI - 为中国用户提供无缝的 AI 体验",
     description:
       "源于官方，忠于原版。合规账号、纯净家庭 IP、全流程托管，为中国用户提供无缝的 AI 体验。",
     url: "https://originai.cn",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OriginAI — 极致的 Claude 体验",
+    title: "OriginAI - 为中国用户提供无缝的 AI 体验",
     description:
       "源于官方，忠于原版。合规账号、纯净家庭 IP、全流程托管，为中国用户提供无缝的 AI 体验。",
     images: ["/og-image.png"],
