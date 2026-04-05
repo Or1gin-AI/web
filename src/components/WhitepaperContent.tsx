@@ -222,10 +222,6 @@ export default function WhitepaperContent() {
           每个账号由 OriginAI 使用美国本土正规信用卡购买和续费。账号凭证加密存储在我们的控制平面，客户端通过安全通道获取 OAuth token 并存储在操作系统级安全存储中，定期自动刷新。用户无需关心账号维护、续费、密码管理等任何细节——<strong className="text-text font-medium">像使用自己的账号一样，但完全免去运维负担</strong>。
         </p>
 
-        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">客户端：开源可审计</h3>
-        <p className="text-[14px] text-text-secondary leading-relaxed">
-          客户端源码完全公开，支持可复现构建（Reproducible Builds）。用户可自行审计代码、验证分发的二进制文件与源码一致，从根本上杜绝后门。支持 macOS、Windows 和 Linux 三大桌面平台。
-        </p>
       </section>
 
       {/* Section 04: Security */}
@@ -235,10 +231,6 @@ export default function WhitepaperContent() {
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
           您直接使用 Claude 官方客户端（Claude.ai、Claude Code）与 Anthropic 服务器通信。OriginAI 只优化网络环境，<strong className="text-text font-medium">不经手、不中转、不存储您的任何数据</strong>。
         </p>
-
-        <div className="border-l-[3px] border-brand bg-brand-light rounded-r-lg px-5 py-3 text-[14px] text-text-secondary italic mb-6">
-          您的对话从您的设备直达 Anthropic 官方服务器，全程端到端加密。OriginAI 提供的是网络加速，不是中间人——我们在技术上无法看到您的任何对话内容。
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -306,8 +298,8 @@ export default function WhitepaperContent() {
           {[
             { num: "1", phase: "Phase 1 · 验证期", title: "产品验证（第 1-2 月）", desc: "少量账号投入运营，发布跨平台桌面客户端 MVP，建立核心种子用户群，收集反馈快速迭代。", tags: ["MVP 客户端", "种子用户"], active: true },
             { num: "2", phase: "Phase 2 · 稳定期", title: "基础设施升级（第 3-4 月）", desc: "部署自动化运维监控体系，账号池扩展至 50 个，实现用户自助开通流程。", tags: ["自动化运维", "自助开通"], active: false },
-            { num: "3", phase: "Phase 3 · 增长期", title: "规模化运营（第 5-8 月）", desc: "客户端代码正式开源，扩展 IP 池节点覆盖，上线团队协作方案，探索 Tauri 轻量客户端重写。", tags: ["代码开源", "IP 池扩展", "团队方案"], active: false },
-            { num: "4", phase: "Phase 4 · 成熟期", title: "企业级服务（第 9-12 月）", desc: "提供 SLA 正式保证，引入第三方安全审计，推出企业级定制服务，探索更多 AI 平台接入。", tags: ["SLA 保证", "安全审计", "企业版"], active: false },
+            { num: "3", phase: "Phase 3 · 增长期", title: "规模化运营（第 5-8 月）", desc: "客户端代码正式开源，扩展 IP 池节点覆盖，上线更多 AI 服务，探索更轻量高效的系统架构。", tags: ["代码开源", "IP 池扩展", "更多 AI 服务"], active: false },
+            { num: "4", phase: "Phase 4 · 成熟期", title: "企业级服务（第 9-12 月）", desc: "提供 SLA 正式保证，引入第三方安全审计，推出企业级定制服务。", tags: ["SLA 保证", "安全审计", "企业版"], active: false },
           ].map((item) => (
             <div key={item.num} className="relative pl-12 p-4 bg-bg-card border border-border rounded-xl">
               <div className={`absolute left-4 top-5 w-6 h-6 rounded-full border-[1.5px] border-brand flex items-center justify-center font-mono text-[10px] font-medium ${item.active ? "bg-brand text-white" : "bg-brand-light text-brand"}`}>
