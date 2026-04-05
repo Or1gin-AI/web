@@ -51,8 +51,6 @@ export default function Hero() {
           variants={fadeUp}
           className="text-[14px] text-text-muted leading-relaxed"
         >
-          Claude 订阅代购与中继服务
-          <br />
           为中国用户提供无缝的 AI 体验
         </motion.p>
 

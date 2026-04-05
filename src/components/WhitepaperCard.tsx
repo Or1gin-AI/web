@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WhitepaperModal from "./WhitepaperModal";
 
 export default function WhitepaperCard() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener("open-whitepaper", handleOpen);
+    return () => window.removeEventListener("open-whitepaper", handleOpen);
+  }, []);
 
   return (
     <>
@@ -24,7 +30,7 @@ export default function WhitepaperCard() {
               WHITEPAPER
             </p>
             <h3 className="text-[16px] md:text-[17px] font-medium text-text mb-1 truncate">
-              OriginAI：纯净的 Claude 极致体验
+              极致的 Claude 体验
             </h3>
             <p className="text-[13px] text-text-muted">
               正本清源，回归正版。了解我们如何解决 Claude 使用中的核心问题。

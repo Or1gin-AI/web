@@ -50,6 +50,7 @@ export default function WhitepaperModal({ isOpen, onClose }: WhitepaperModalProp
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[101] overflow-y-auto"
+            onClick={onClose}
           >
             <div className="min-h-full flex items-start justify-center py-8 px-4">
               <div

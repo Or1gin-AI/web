@@ -22,7 +22,7 @@ export default function WhitepaperContent() {
           Whitepaper
         </p>
         <h1 className="font-serif text-[clamp(26px,5vw,38px)] font-light leading-tight text-text mb-4">
-          OriginAI：纯净的 Claude 极致体验
+          极致的 Claude 体验
         </h1>
         <p className="text-[15px] text-text-secondary leading-relaxed max-w-[560px]">
           正本清源，回归正版。合规账号、纯净 IP、全流程托管——让您在自己的电脑上，100% 使用 Claude 官方服务。

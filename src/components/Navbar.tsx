@@ -23,6 +23,10 @@ export default function Navbar() {
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
+    if (href === "#whitepaper") {
+      window.dispatchEvent(new CustomEvent("open-whitepaper"));
+      return;
+    }
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
