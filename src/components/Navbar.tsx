@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
+import Image from "next/image";
 
 const navLinks = [
   { label: "白皮书", href: "#whitepaper" },
@@ -40,8 +41,11 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1080px] mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-serif text-[15px] text-text font-normal tracking-tight">
-          OriginAI
+        <a href="#" className="flex items-center gap-2">
+          <Image src="/icon.png" alt="OriginAI" width={28} height={28} />
+          <span className="font-serif text-[15px] text-text font-normal tracking-tight">
+            OriginAI
+          </span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
