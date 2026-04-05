@@ -53,24 +53,18 @@ export default function Hero() {
           variants={fadeUp}
           className="mt-8 flex gap-3 justify-center flex-wrap"
         >
-          <button
-            onClick={() => window.dispatchEvent(new CustomEvent("open-whitepaper"))}
-            className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
-          >
-            阅读白皮书
-          </button>
           <a
             href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer"
             className="px-7 py-2.5 bg-dark text-bg text-[13px] rounded hover:opacity-90 transition-opacity"
           >
             抢先体验
           </a>
-          <a
-            href="#services"
-            className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors"
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-whitepaper"))}
+            className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
           >
-            了解更多
-          </a>
+            阅读白皮书
+          </button>
         </motion.div>
       </motion.div>
     </section>
