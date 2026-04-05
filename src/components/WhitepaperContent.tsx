@@ -1,5 +1,20 @@
 "use client";
 
+import {
+  RiChatSmileLine,
+  RiBankCardLine,
+  RiGlobalLine,
+  RiEmotionUnhappyLine,
+  RiSpyLine,
+  RiBaseStationLine,
+  RiKeyLine,
+  RiBox3Line,
+  RiFlashlightLine,
+  RiRobot2Line,
+  RiMacbookLine,
+  RiHome4Line,
+} from "react-icons/ri";
+
 export default function WhitepaperContent() {
   return (
     <article className="max-w-[720px] mx-auto px-6 py-12">
@@ -71,12 +86,12 @@ export default function WhitepaperContent() {
         </p>
         <div className="space-y-3 mb-6">
           {[
-            { icon: "💳", title: "支付方式不过关", desc: "Anthropic 对支付来源有严格风控。使用非美国信用卡、虚拟卡或代充值，极易触发风控导致账号被封，充值的钱也打了水漂。" },
-            { icon: "🌐", title: "IP 不够干净", desc: "网络环境不够干净（数据中心 IP、共享出口、频繁切换节点），轻则频繁弹出验证码、被限流，重则直接封号。就算侥幸开通，也活不了多久。" },
-            { icon: "😰", title: "提心吊胆的体验", desc: "即使账号暂时存活，用户也时刻担心被封、担心降智、担心 IP 被标记。在恐惧中使用 AI，完全无法专注于工作本身。" },
+            { Icon: RiBankCardLine, title: "支付方式不过关", desc: "Anthropic 对支付来源有严格风控。使用非美国信用卡、虚拟卡或代充值，极易触发风控导致账号被封，充值的钱也打了水漂。" },
+            { Icon: RiGlobalLine, title: "IP 不够干净", desc: "网络环境不够干净（数据中心 IP、共享出口、频繁切换节点），轻则频繁弹出验证码、被限流，重则直接封号。就算侥幸开通，也活不了多久。" },
+            { Icon: RiEmotionUnhappyLine, title: "提心吊胆的体验", desc: "即使账号暂时存活，用户也时刻担心被封、担心降智、担心 IP 被标记。在恐惧中使用 AI，完全无法专注于工作本身。" },
           ].map((item) => (
             <div key={item.title} className="flex gap-4 p-4 bg-bg-card border border-border rounded-xl">
-              <div className="shrink-0 w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-base">{item.icon}</div>
+              <div className="shrink-0 w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-red-400"><item.Icon size={18} /></div>
               <div>
                 <h4 className="text-[14px] font-medium text-text mb-0.5">{item.title}</h4>
                 <p className="text-[13px] text-text-muted leading-relaxed">{item.desc}</p>
@@ -91,12 +106,12 @@ export default function WhitepaperContent() {
         </p>
         <div className="space-y-3 mb-6">
           {[
-            { icon: "💳", title: "第一吃：盗刷信用卡", desc: "使用窃取的信用卡注册 AI 账号。账号随时可能因欺诈检测被封停，用户购买的服务说断就断。" },
-            { icon: "🎭", title: "第二吃：倒卖与伪装 API", desc: "将黑号逆向包装成 API 售卖，用中低端模型冒充前沿模型。用户以为在用 Opus，实际可能收到 Haiku 的回复。" },
-            { icon: "📡", title: "第三吃：贩卖用户数据", desc: "拦截并记录所有对话数据，转售给第三方做模型蒸馏训练。用户的代码、商业机密和隐私信息完全裸奔。" },
+            { Icon: RiBankCardLine, title: "第一吃：盗刷信用卡", desc: "使用窃取的信用卡注册 AI 账号。账号随时可能因欺诈检测被封停，用户购买的服务说断就断。" },
+            { Icon: RiSpyLine, title: "第二吃：倒卖与伪装 API", desc: "将黑号逆向包装成 API 售卖，用中低端模型冒充前沿模型。用户以为在用 Opus，实际可能收到 Haiku 的回复。" },
+            { Icon: RiBaseStationLine, title: "第三吃：贩卖用户数据", desc: "拦截并记录所有对话数据，转售给第三方做模型蒸馏训练。用户的代码、商业机密和隐私信息完全裸奔。" },
           ].map((item) => (
             <div key={item.title} className="flex gap-4 p-4 bg-bg-card border border-border rounded-xl">
-              <div className="shrink-0 w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-base">{item.icon}</div>
+              <div className="shrink-0 w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-red-400"><item.Icon size={18} /></div>
               <div>
                 <h4 className="text-[14px] font-medium text-text mb-0.5">{item.title}</h4>
                 <p className="text-[13px] text-text-muted leading-relaxed">{item.desc}</p>
@@ -148,7 +163,7 @@ export default function WhitepaperContent() {
             { value: "美国信用卡", label: "本土正规支付，零风控", color: "text-brand" },
             { value: "家庭住宅 IP", label: "非机房，非数据中心", color: "text-green-600" },
             { value: "1:1 独享", label: "一人一号，不共享不超卖", color: "text-text" },
-            { value: "100% 官方", label: "Claude Desktop / .ai / Code", color: "text-brand" },
+            { value: "100% 官方", label: "Claude.ai / Claude Code", color: "text-brand" },
           ].map((s) => (
             <div key={s.value} className="bg-bg-card border border-border rounded-xl p-4 text-center">
               <div className={`font-serif text-[22px] font-light ${s.color}`}>{s.value}</div>
@@ -160,10 +175,10 @@ export default function WhitepaperContent() {
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">使用流程</h3>
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           {[
-            { num: "1", icon: "🔑", title: "OriginAI 准备账号", desc: "美国信用卡购买\nPro / Team / Max 订阅", tag: "我们完成", highlight: false },
-            { num: "2", icon: "📦", title: "用户安装客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
-            { num: "3", icon: "⚡", title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
-            { num: "4", icon: "🤖", title: "使用官方 Claude", desc: "Claude Desktop / .ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
+            { num: "1", Icon: RiKeyLine, title: "OriginAI 准备账号", desc: "美国信用卡购买\nPro / Team / Max 订阅", tag: "我们完成", highlight: false },
+            { num: "2", Icon: RiBox3Line, title: "用户安装客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
+            { num: "3", Icon: RiFlashlightLine, title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
+            { num: "4", Icon: RiRobot2Line, title: "使用官方 Claude", desc: "Claude.ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
           ].map((step, i) => (
             <div key={step.num} className="contents">
               {i > 0 && <div className="hidden sm:flex items-center text-text-faint text-sm justify-center">→</div>}
@@ -171,7 +186,7 @@ export default function WhitepaperContent() {
                 <div className="w-[22px] h-[22px] rounded-full bg-brand text-white text-[11px] font-mono font-medium flex items-center justify-center mx-auto mb-2">
                   {step.num}
                 </div>
-                <div className="text-[20px] mb-2">{step.icon}</div>
+                <div className="mb-2 flex justify-center text-brand"><step.Icon size={24} /></div>
                 <div className="text-[13px] font-semibold text-text mb-1">{step.title}</div>
                 <div className="text-[11px] text-text-muted leading-relaxed whitespace-pre-line mb-2">{step.desc}</div>
                 <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-mono font-medium ${step.highlight ? "bg-green-50 text-green-600" : "bg-brand-light text-brand"}`}>
@@ -197,14 +212,15 @@ export default function WhitepaperContent() {
         <div className="bg-bg-alt rounded-xl p-6 mb-6 font-mono text-[12px] text-text-muted overflow-x-auto">
           <div className="flex items-center justify-center gap-2 flex-nowrap min-w-[500px]">
             {[
-              { label: "💻 用户设备", desc: "macOS / Win / Linux", highlight: false },
-              { label: "⚡ OriginAI", desc: "Claude 智能加速", highlight: true },
-              { label: "🏠 美国家庭节点", desc: "住宅 IP", highlight: false },
-              { label: "🤖 Claude", desc: "Anthropic 官方", highlight: true },
+              { Icon: RiMacbookLine, label: "用户设备", desc: "macOS / Win / Linux", highlight: false },
+              { Icon: RiFlashlightLine, label: "OriginAI", desc: "Claude 智能加速", highlight: true },
+              { Icon: RiHome4Line, label: "美国家庭节点", desc: "住宅 IP", highlight: false },
+              { Icon: RiRobot2Line, label: "Claude", desc: "Anthropic 官方", highlight: true },
             ].map((box, i) => (
               <div key={box.label} className="contents">
                 {i > 0 && <span className="text-text-faint text-sm shrink-0">→</span>}
                 <div className={`px-3 py-2 border rounded-lg text-center min-w-[100px] ${box.highlight ? "border-brand bg-brand-light" : "border-border-strong bg-bg-card"}`}>
+                  <div className="flex justify-center mb-1"><box.Icon size={16} className={box.highlight ? "text-brand" : "text-text-muted"} /></div>
                   <span className="text-[11px] font-medium text-text block">{box.label}</span>
                   <span className="text-[10px] text-text-faint">{box.desc}</span>
                 </div>
@@ -216,7 +232,7 @@ export default function WhitepaperContent() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { title: "Claude 专属加速", desc: "智能识别 Claude 流量并优化网络环境，其他网络活动不受任何影响" },
-            { title: "100% 官方渠道", desc: "直接使用 Claude Desktop、Claude.ai 或 Claude Code，全程官方客户端和服务" },
+            { title: "100% 官方渠道", desc: "直接使用 Claude.ai 或 Claude Code，全程官方客户端和服务" },
             { title: "一键登录", desc: "OAuth 验证链接自动转发，一键完成认证，无需手动处理" },
             { title: "客户端开源", desc: "源码完全公开，用户可自行审计验证，杜绝后门" },
           ].map((item) => (
@@ -233,7 +249,7 @@ export default function WhitepaperContent() {
         <p className="font-mono text-[11px] text-brand uppercase tracking-widest mb-3">04</p>
         <h2 className="font-serif text-[22px] font-light text-text mb-4 leading-snug">安全与隐私</h2>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          您直接使用 Claude 官方客户端（Claude Desktop、Claude.ai、Claude Code）与 Anthropic 服务器通信。OriginAI 只优化网络环境，<strong className="text-text font-medium">不经手、不中转、不存储您的任何数据</strong>。
+          您直接使用 Claude 官方客户端（Claude.ai、Claude Code）与 Anthropic 服务器通信。OriginAI 只优化网络环境，<strong className="text-text font-medium">不经手、不中转、不存储您的任何数据</strong>。
         </p>
 
         <div className="border-l-[3px] border-brand bg-brand-light rounded-r-lg px-5 py-3 text-[14px] text-text-secondary italic mb-6">
@@ -329,8 +345,10 @@ export default function WhitepaperContent() {
         <div className="space-y-3">
           {[
             { label: "核心架构设计", pct: 100, color: "bg-brand" },
-            { label: "桌面客户端开发", pct: 40, color: "bg-brand" },
-            { label: "美国节点部署", pct: 60, color: "bg-green-600" },
+            { label: "后端开发", pct: 50, color: "bg-brand" },
+            { label: "macOS 端开发", pct: 30, color: "bg-brand" },
+            { label: "Windows 端开发", pct: 30, color: "bg-brand" },
+            { label: "美国节点部署", pct: 100, color: "bg-green-600" },
           ].map((item) => (
             <div key={item.label}>
               <div className="flex justify-between text-[13px] mb-1">
