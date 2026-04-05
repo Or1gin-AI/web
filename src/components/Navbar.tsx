@@ -54,12 +54,14 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
-          <button
-            onClick={() => handleClick("#waitlist")}
+          <a
+            href="https://wt.ls/origin-ai"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[12px] px-5 py-2 bg-dark text-bg rounded cursor-pointer hover:opacity-90 transition-opacity"
           >
             立即开始
-          </button>
+          </a>
         </div>
 
         <button
@@ -88,12 +90,14 @@ export default function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <button
-                onClick={() => handleClick("#waitlist")}
+              <a
+                href="https://wt.ls/origin-ai"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[13px] px-5 py-2.5 bg-dark text-bg rounded w-fit cursor-pointer"
               >
                 立即开始
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

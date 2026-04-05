@@ -37,7 +37,7 @@ export default function Pricing() {
                 <p className="text-[11px] text-text-muted mt-1">{plan.priceNote}</p>
                 <p className="text-[10px] text-text-faint mt-2">+ 平台服务费</p>
                 {plan.cta && (
-                  <a href="#waitlist" className={`block mt-5 py-2.5 rounded text-[12px] transition-opacity hover:opacity-90 ${
+                  <a href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer" className={`block mt-5 py-2.5 rounded text-[12px] transition-opacity hover:opacity-90 ${
                     plan.recommended ? "bg-dark text-bg" : "border border-brand/40 text-text-secondary"
                   }`}>
                     {plan.cta}

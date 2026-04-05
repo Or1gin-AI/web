@@ -59,7 +59,7 @@ export default function Hero() {
           className="mt-8 flex gap-3 justify-center flex-wrap"
         >
           <a
-            href="#waitlist"
+            href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer"
             className="px-7 py-2.5 bg-dark text-bg text-[13px] rounded hover:opacity-90 transition-opacity"
           >
             立即开始
