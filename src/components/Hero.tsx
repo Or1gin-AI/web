@@ -21,7 +21,7 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="flex items-center justify-center px-6" style={{ minHeight: "calc(100vh - 64px)" }}>
+    <section className="flex items-center justify-center px-6 py-12 md:py-20">
       <motion.div
         className="max-w-[1080px] mx-auto text-center"
         variants={stagger}
