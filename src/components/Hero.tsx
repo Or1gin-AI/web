@@ -32,7 +32,7 @@ export default function Hero() {
           variants={fadeUp}
           className="font-serif text-3xl md:text-[42px] font-light text-text leading-snug md:leading-relaxed"
         >
-          AI 界的头等舱
+          见素抱朴，原生如初。
         </motion.h1>
 
         <motion.div
