@@ -11,8 +11,6 @@ import {
   RiBox3Line,
   RiFlashlightLine,
   RiRobot2Line,
-  RiMacbookLine,
-  RiHome4Line,
 } from "react-icons/ri";
 
 export default function WhitepaperContent() {
@@ -91,7 +89,7 @@ export default function WhitepaperContent() {
             { Icon: RiEmotionUnhappyLine, title: "提心吊胆的体验", desc: "即使账号暂时存活，用户也时刻担心被封、担心降智、担心 IP 被标记。在恐惧中使用 AI，完全无法专注于工作本身。" },
           ].map((item) => (
             <div key={item.title} className="flex gap-4 p-4 bg-bg-card border border-border rounded-xl">
-              <div className="shrink-0 w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-red-400"><item.Icon size={18} /></div>
+              <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-light flex items-center justify-center text-brand"><item.Icon size={18} /></div>
               <div>
                 <h4 className="text-[14px] font-medium text-text mb-0.5">{item.title}</h4>
                 <p className="text-[13px] text-text-muted leading-relaxed">{item.desc}</p>
@@ -111,7 +109,7 @@ export default function WhitepaperContent() {
             { Icon: RiBaseStationLine, title: "第三吃：贩卖用户数据", desc: "拦截并记录所有对话数据，转售给第三方做模型蒸馏训练。用户的代码、商业机密和隐私信息完全裸奔。" },
           ].map((item) => (
             <div key={item.title} className="flex gap-4 p-4 bg-bg-card border border-border rounded-xl">
-              <div className="shrink-0 w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center text-red-400"><item.Icon size={18} /></div>
+              <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-light flex items-center justify-center text-brand"><item.Icon size={18} /></div>
               <div>
                 <h4 className="text-[14px] font-medium text-text mb-0.5">{item.title}</h4>
                 <p className="text-[13px] text-text-muted leading-relaxed">{item.desc}</p>
@@ -175,8 +173,8 @@ export default function WhitepaperContent() {
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">使用流程</h3>
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           {[
-            { num: "1", Icon: RiKeyLine, title: "OriginAI 准备账号", desc: "美国信用卡购买\nPro / Team / Max 订阅", tag: "我们完成", highlight: false },
-            { num: "2", Icon: RiBox3Line, title: "用户安装客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
+            { num: "1", Icon: RiKeyLine, title: "OriginAI 账号", desc: "美国信用卡购买\nPro / Team / Max 订阅", tag: "我们完成", highlight: false },
+            { num: "2", Icon: RiBox3Line, title: "安装客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
             { num: "3", Icon: RiFlashlightLine, title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
             { num: "4", Icon: RiRobot2Line, title: "使用官方 Claude", desc: "Claude.ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
           ].map((step, i) => (
@@ -209,39 +207,25 @@ export default function WhitepaperContent() {
           OriginAI 客户端是一款轻量级开源桌面应用，类似于游戏加速器的工作原理——<strong className="text-text font-medium">智能识别 Claude 流量，自动优化网络环境</strong>，确保所有 Claude 请求均通过优质美国家庭 IP 出口。其他网络活动完全不受影响。
         </p>
 
-        <div className="bg-bg-alt rounded-xl p-6 mb-6 font-mono text-[12px] text-text-muted overflow-x-auto">
-          <div className="flex items-center justify-center gap-2 flex-nowrap min-w-[500px]">
-            {[
-              { Icon: RiMacbookLine, label: "用户设备", desc: "macOS / Win / Linux", highlight: false },
-              { Icon: RiFlashlightLine, label: "OriginAI", desc: "Claude 智能加速", highlight: true },
-              { Icon: RiHome4Line, label: "美国家庭节点", desc: "住宅 IP", highlight: false },
-              { Icon: RiRobot2Line, label: "Claude", desc: "Anthropic 官方", highlight: true },
-            ].map((box, i) => (
-              <div key={box.label} className="contents">
-                {i > 0 && <span className="text-text-faint text-sm shrink-0">→</span>}
-                <div className={`px-3 py-2 border rounded-lg text-center min-w-[100px] ${box.highlight ? "border-brand bg-brand-light" : "border-border-strong bg-bg-card"}`}>
-                  <div className="flex justify-center mb-1"><box.Icon size={16} className={box.highlight ? "text-brand" : "text-text-muted"} /></div>
-                  <span className="text-[11px] font-medium text-text block">{box.label}</span>
-                  <span className="text-[10px] text-text-faint">{box.desc}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">网络层：Claude 专属加速</h3>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          客户端在本地运行一个轻量代理服务，通过域名规则精确匹配 Claude 相关流量（<code className="text-[13px] font-mono bg-bg-alt px-1 py-0.5 rounded">claude.ai</code>、<code className="text-[13px] font-mono bg-bg-alt px-1 py-0.5 rounded">api.anthropic.com</code> 等），将其路由至部署在美国的家庭住宅 IP 节点。非 Claude 流量完全不经过我们的网络，零延迟影响。
+        </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            { title: "Claude 专属加速", desc: "智能识别 Claude 流量并优化网络环境，其他网络活动不受任何影响" },
-            { title: "100% 官方渠道", desc: "直接使用 Claude.ai 或 Claude Code，全程官方客户端和服务" },
-            { title: "一键登录", desc: "OAuth 验证链接自动转发，一键完成认证，无需手动处理" },
-            { title: "客户端开源", desc: "源码完全公开，用户可自行审计验证，杜绝后门" },
-          ].map((item) => (
-            <div key={item.title} className="bg-bg-card border border-border rounded-xl p-4">
-              <h4 className="text-[13px] font-medium text-text mb-1">{item.title}</h4>
-              <p className="text-[12px] text-text-muted leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
+        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">认证层：OAuth、短信与邮件托管</h3>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          Claude 的登录流程涉及 OAuth 授权、短信验证码和邮件验证。OriginAI 客户端会<strong className="text-text font-medium">自动代理 OAuth 认证请求</strong>，同时我们的后端托管了 SMS 和邮件接收服务，所有验证流程对用户完全透明——点击「登录」后一切自动完成，无需手动输入验证码、无需访问邮箱。
+        </p>
+
+        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">账号层：全托管无感运维</h3>
+        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
+          每个账号由 OriginAI 使用美国本土正规信用卡购买和续费。账号凭证加密存储在我们的控制平面，客户端通过安全通道获取 OAuth token 并存储在操作系统级安全存储中，定期自动刷新。用户无需关心账号维护、续费、密码管理等任何细节——<strong className="text-text font-medium">像使用自己的账号一样，但完全免去运维负担</strong>。
+        </p>
+
+        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">客户端：开源可审计</h3>
+        <p className="text-[14px] text-text-secondary leading-relaxed">
+          客户端源码完全公开，支持可复现构建（Reproducible Builds）。用户可自行审计代码、验证分发的二进制文件与源码一致，从根本上杜绝后门。支持 macOS、Windows 和 Linux 三大桌面平台。
+        </p>
       </section>
 
       {/* Section 04: Security */}
@@ -258,10 +242,10 @@ export default function WhitepaperContent() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { title: "100% 官方通信", desc: "您直接与 Anthropic 服务器对话，我们不做任何中间处理" },
+            { title: "100% 官方通信", desc: "您直接与 Anthropic 服务器对话，我们只做网络加速，数据全程加密，技术上无法触碰您的内容" },
             { title: "端到端加密", desc: "数据在您的设备上加密，在 Anthropic 解密，我们只看到密文" },
             { title: "客户端开源", desc: "源码完全公开，任何人可审计验证我们没有后门" },
-            { title: "技术上不可见", desc: "我们只做网络加速，数据全程加密，技术上无法触碰您的内容" },
+            { title: "软件全托管", desc: "账号维护、续费、OAuth 登录、验证码接收全部由我们处理，您只需一键连接，零运维负担" },
           ].map((item) => (
             <div key={item.title} className="bg-bg-card border border-border rounded-xl p-4">
               <h4 className="text-[13px] font-medium text-text mb-1">{item.title}</h4>
@@ -348,7 +332,7 @@ export default function WhitepaperContent() {
             { label: "后端开发", pct: 50, color: "bg-brand" },
             { label: "macOS 端开发", pct: 30, color: "bg-brand" },
             { label: "Windows 端开发", pct: 30, color: "bg-brand" },
-            { label: "美国节点部署", pct: 100, color: "bg-green-600" },
+            { label: "美国节点部署", pct: 100, color: "bg-brand" },
           ].map((item) => (
             <div key={item.label}>
               <div className="flex justify-between text-[13px] mb-1">
