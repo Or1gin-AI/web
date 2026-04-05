@@ -4,8 +4,8 @@ import SectionHeader from "./SectionHeader";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const plans = [
+  { name: "TEAM", price: "$25", priceNote: "/月 官网价格", recommended: false, comingSoon: true, cta: null },
   { name: "PRO", price: "$20", priceNote: "/月 官网价格", recommended: true, comingSoon: false, cta: "选择方案" },
-  { name: "TEAM", price: "$30", priceNote: "/月 官网价格", recommended: false, comingSoon: true, cta: null },
   { name: "MAX", price: "$100 / $200", priceNote: "/月 官网价格", recommended: false, comingSoon: false, cta: "选择方案" },
 ];
 
@@ -48,7 +48,7 @@ export default function Pricing() {
           ))}
         </div>
         <p className="text-center text-[12px] text-text-faint mt-6">
-          具体以结算价格为准 · 所有方案均为 1:1 独享账号
+          具体以结算价格为准 · 所有方案均为个人独享账号
         </p>
       </div>
     </section>
