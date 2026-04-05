@@ -4,17 +4,19 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import Image from "next/image";
-
-const navLinks = [
-  { label: "白皮书", href: "#whitepaper" },
-  { label: "服务介绍", href: "#services" },
-  { label: "价格方案", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-];
+import { useLocale } from "@/i18n/context";
 
 export default function Navbar() {
+  const { locale, setLocale, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.whitepaper, href: "#whitepaper" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.pricing, href: "#pricing" },
+    { label: t.nav.faq, href: "#faq" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -31,6 +33,33 @@ export default function Navbar() {
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const toggleLocale = () => setLocale(locale === "en" ? "zh" : "en");
+
+  const LocaleToggle = () => (
+    <div className="flex items-center bg-border/40 rounded-full p-[2px]">
+      <button
+        onClick={toggleLocale}
+        className={`text-[11px] px-2.5 py-[3px] rounded-full transition-all duration-200 cursor-pointer ${
+          locale === "en"
+            ? "bg-dark text-bg"
+            : "text-text-muted hover:text-text"
+        }`}
+      >
+        EN
+      </button>
+      <button
+        onClick={toggleLocale}
+        className={`text-[11px] px-2.5 py-[3px] rounded-full transition-all duration-200 cursor-pointer ${
+          locale === "zh"
+            ? "bg-dark text-bg"
+            : "text-text-muted hover:text-text"
+        }`}
+      >
+        中
+      </button>
+    </div>
+  );
 
   return (
     <nav
@@ -64,8 +93,9 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="text-[12px] px-5 py-2 bg-dark text-bg rounded cursor-pointer hover:opacity-90 transition-opacity"
           >
-            抢先体验
+            {t.nav.cta}
           </a>
+          <LocaleToggle />
         </div>
 
         <button
@@ -100,8 +130,11 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="text-[13px] px-5 py-2.5 bg-dark text-bg rounded w-fit cursor-pointer"
               >
-                抢先体验
+                {t.nav.cta}
               </a>
+              <div className="pt-2 border-t border-border">
+                <LocaleToggle />
+              </div>
             </div>
           </motion.div>
         )}

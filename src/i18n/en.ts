@@ -1,0 +1,86 @@
+export const en = {
+  nav: {
+    whitepaper: "Whitepaper",
+    services: "Services",
+    pricing: "Pricing",
+    faq: "FAQ",
+    cta: "Get Early Access",
+  },
+  hero: {
+    title: "Pure by Design, Authentic by Nature.",
+    subtitle1: "Legitimate Accounts · US Credit Card Billing · Clean Residential IPs",
+    subtitle2: "No bans, no middlemen — use Claude like an American",
+    primaryCta: "Get Early Access",
+    secondaryCta: "Read Whitepaper",
+  },
+  whitepaperCard: {
+    title: "OriginAI: The Ultimate Claude Experience",
+    desc: "Authentic access, done right. Learn how we solve the core challenges of using Claude.",
+    readMore: "Read More →",
+  },
+  services: {
+    label: "SERVICES",
+    title: "What We Offer",
+    items: [
+      { title: "Compliant Accounts", desc: "Purchased with US credit cards\n1:1 exclusive, zero risk" },
+      { title: "Clean Network", desc: "US residential IPs\nNo data centers, no shared proxies" },
+      { title: "Zero-Knowledge Tunnel", desc: "End-to-end TLS encryption\nWe cannot read your data" },
+    ],
+  },
+  features: {
+    label: "ADVANTAGES",
+    title: "Why Choose OriginAI",
+    items: [
+      { title: "Official Experience", desc: "Direct connection to Anthropic — no model substitution" },
+      { title: "Open Source & Auditable", desc: "Client source code is fully public" },
+      { title: "Dual-Mode Compatible", desc: "Claude.ai web + Claude Code CLI" },
+      { title: "Fully Managed", desc: "Account maintenance, billing & monitoring — all handled by us" },
+    ],
+  },
+  pricing: {
+    label: "PRICING",
+    title: "Pricing Plans",
+    recommended: "Recommended",
+    comingSoon: "Coming Soon",
+    choosePlan: "Choose Plan",
+    platformFee: "+ platform fee",
+    disclaimer: "Final price at checkout · All plans are individually exclusive accounts",
+    openRouterNote: "Save over 80% compared to OpenRouter. ",
+    openRouterLink: "See whitepaper for details",
+    priceNote: "/mo official price",
+  },
+  faq: {
+    label: "FAQ",
+    title: "Frequently Asked Questions",
+    items: [
+      {
+        q: "How does OriginAI's network optimization work?",
+        a: "The OriginAI client intelligently identifies Claude-related traffic (claude.ai, api.anthropic.com) and routes it through premium US residential IP endpoints. Your other internet activity is completely unaffected — lower latency, smoother experience. We focus on optimizing the Claude network environment, and we do it exceptionally well.",
+      },
+      {
+        q: "Can you see my conversations?",
+        a: "No. Communication between you and Claude is end-to-end TLS encrypted — encryption happens in your browser or CLI, decryption happens on Anthropic's servers. OriginAI only forwards traffic at the network layer and only sees encrypted ciphertext. It is technically impossible for us to read any conversation content. This is an architectural guarantee, not just a promise.",
+      },
+      {
+        q: "Will my account get banned?",
+        a: "We use legitimately purchased accounts paired with clean US residential IPs. The usage pattern is identical to that of a normal American user, making the risk of triggering risk controls extremely low. We also continuously monitor the health of every account and proactively address any anomalies to ensure uninterrupted service.",
+      },
+      {
+        q: "What usage methods are supported?",
+        a: "We support Claude.ai (web) and Claude Code CLI. After installing the OriginAI desktop client, simply enable the connection for seamless use. The client supports macOS, Windows, and Linux.",
+      },
+      {
+        q: "How can I be sure I'm using the real model?",
+        a: "You're using an official Anthropic account, and all requests go directly to Anthropic's servers. We do not proxy APIs, rewrite requests, or substitute models. Every response you receive comes from the official model corresponding to your subscription tier — identical to using Claude directly in the US.",
+      },
+    ],
+  },
+  cta: {
+    title: "Ready to Begin?",
+    subtitle: "Join the Waitlist and be among the first users",
+    button: "Join Waitlist",
+  },
+  footer: {
+    tagline: "The ultimate AI experience.",
+  },
+};

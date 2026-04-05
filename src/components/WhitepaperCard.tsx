@@ -3,12 +3,22 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WhitepaperModal from "./WhitepaperModal";
+import { useLocale } from "@/i18n/context";
 
 export default function WhitepaperCard() {
+  const { t } = useLocale();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
+    const handleOpen = (e: Event) => {
+      setIsOpen(true);
+      const section = (e as CustomEvent).detail;
+      if (section) {
+        setTimeout(() => {
+          document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
+        }, 500);
+      }
+    };
     window.addEventListener("open-whitepaper", handleOpen);
     return () => window.removeEventListener("open-whitepaper", handleOpen);
   }, []);
@@ -30,14 +40,14 @@ export default function WhitepaperCard() {
               WHITEPAPER
             </p>
             <h3 className="text-[16px] md:text-[17px] font-medium text-text mb-1 truncate">
-              OriginAI：极致的 Claude 体验
+              {t.whitepaperCard.title}
             </h3>
             <p className="text-[13px] text-text-muted">
-              正本清源，回归正版。了解我们如何解决 Claude 使用中的核心问题。
+              {t.whitepaperCard.desc}
             </p>
           </div>
           <span className="shrink-0 text-[13px] text-brand group-hover:translate-x-0.5 transition-transform">
-            阅读全文 →
+            {t.whitepaperCard.readMore}
           </span>
         </button>
       </motion.div>

@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
+import { LocaleProvider } from "@/i18n/context";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OriginAI - 提供极致的 AI 体验",
+  title: "OriginAI - The Ultimate AI Experience",
   description:
-    "见素抱朴，原生如初。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
+    "Pure by design, authentic by nature. Legitimate accounts, US credit card billing, clean residential IPs — no bans, no middlemen, use Claude like an American.",
   keywords: [
     "OriginAI",
     "Claude",
     "Anthropic",
     "Claude Pro",
     "Claude Max",
-    "AI 订阅",
-    "Claude 代购",
+    "AI subscription",
+    "Claude proxy",
   ],
   authors: [{ name: "OriginAI Team" }],
   icons: {
@@ -24,9 +25,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "OriginAI - 提供极致的 AI 体验",
+    title: "OriginAI - The Ultimate AI Experience",
     description:
-      "见素抱朴，原生如初。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
+      "Pure by design, authentic by nature. Legitimate accounts, US credit card billing, clean residential IPs — no bans, no middlemen, use Claude like an American.",
     url: "https://originai.cn",
     siteName: "OriginAI",
     images: [
@@ -34,17 +35,17 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "OriginAI — 提供极致的 AI 体验",
+        alt: "OriginAI — The Ultimate AI Experience",
       },
     ],
-    locale: "zh_CN",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OriginAI - 提供极致的 AI 体验",
+    title: "OriginAI - The Ultimate AI Experience",
     description:
-      "见素抱朴，原生如初。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
+      "Pure by design, authentic by nature. Legitimate accounts, US credit card billing, clean residential IPs — no bans, no middlemen, use Claude like an American.",
     images: ["/og-image.png"],
   },
 };
@@ -55,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -68,7 +69,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <LocaleProvider>{children}</LocaleProvider>
+      </body>
     </html>
   );
 }

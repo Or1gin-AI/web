@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useLocale } from "@/i18n/context";
 
 const stagger: Variants = {
   hidden: { opacity: 0 },
@@ -20,6 +21,7 @@ const fadeUp: Variants = {
 };
 
 export default function Hero() {
+  const { t } = useLocale();
   return (
     <section className="flex items-center justify-center px-6 py-24 md:py-36">
       <motion.div
@@ -28,11 +30,18 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
+        <motion.p
+          variants={fadeUp}
+          className="font-mono text-[11px] tracking-[4px] text-brand mb-3"
+        >
+          ORIGINAI
+        </motion.p>
+
         <motion.h1
           variants={fadeUp}
           className="font-serif text-3xl md:text-[42px] font-light text-text leading-snug md:leading-relaxed"
         >
-          见素抱朴，原生如初。
+          {t.hero.title}
         </motion.h1>
 
         <motion.div
@@ -44,9 +53,9 @@ export default function Hero() {
           variants={fadeUp}
           className="text-[14px] text-text-muted leading-relaxed"
         >
-          正规邮箱账号 · 美国信用卡订阅 · 纯净家庭 IP
+          {t.hero.subtitle1}
           <br />
-          告别封号，告别中转站，像美国人一样使用 Claude
+          {t.hero.subtitle2}
         </motion.p>
 
         <motion.div
@@ -57,13 +66,13 @@ export default function Hero() {
             href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer"
             className="px-7 py-2.5 bg-dark text-bg text-[13px] rounded hover:opacity-90 transition-opacity"
           >
-            抢先体验
+            {t.hero.primaryCta}
           </a>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-whitepaper"))}
             className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
           >
-            阅读白皮书
+            {t.hero.secondaryCta}
           </button>
         </motion.div>
       </motion.div>
