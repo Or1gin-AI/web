@@ -42,7 +42,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1080px] mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <Image src="/icon.png" alt="OriginAI" width={28} height={28} />
+          <Image src="/icon-transparent.png" alt="OriginAI" width={28} height={28} />
           <span className="font-serif text-[15px] text-text font-normal tracking-tight">
             OriginAI
           </span>
