@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OriginAI - 为中国用户提供极致的 AI 体验",
+  title: "OriginAI - AI 界的头等舱",
   description:
-    "源于官方，忠于原版。OriginAI 为中国用户提供合规账号、纯净家庭 IP、全流程托管的 Claude 订阅服务，享受无缝的 AI 体验。",
+    "AI 界的头等舱。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
   keywords: [
     "OriginAI",
     "Claude",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "OriginAI - 为中国用户提供极致的 AI 体验",
+    title: "OriginAI - AI 界的头等舱",
     description:
-      "源于官方，忠于原版。合规账号、纯净家庭 IP、全流程托管，为中国用户提供极致的 AI 体验。",
+      "AI 界的头等舱。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
     url: "https://originai.cn",
     siteName: "OriginAI",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "OriginAI — 享受极致的 AI 体验",
+        alt: "OriginAI — AI 界的头等舱",
       },
     ],
     locale: "zh_CN",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OriginAI - 为中国用户提供极致的 AI 体验",
+    title: "OriginAI - AI 界的头等舱",
     description:
-      "源于官方，忠于原版。合规账号、纯净家庭 IP、全流程托管，为中国用户提供极致的 AI 体验。",
+      "AI 界的头等舱。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
     images: ["/og-image.png"],
   },
 };

@@ -4,9 +4,9 @@ import SectionHeader from "./SectionHeader";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const plans = [
-  { name: "TEAM", price: "$25", priceNote: "/月 官网价格", recommended: false, comingSoon: true, cta: null },
-  { name: "PRO", price: "$20", priceNote: "/月 官网价格", recommended: true, comingSoon: false, cta: "选择方案" },
-  { name: "MAX", price: "$100 / $200", priceNote: "/月 官网价格", recommended: false, comingSoon: false, cta: "选择方案" },
+  { name: "PRO", price: "$20", priceNote: "/月 官网价格", recommended: false, comingSoon: false, cta: "选择方案" },
+  { name: "MAX", price: "$100 / $200", priceNote: "/月 官网价格", recommended: true, comingSoon: false, cta: "选择方案" },
+  { name: "TEAM", price: "$25 / $125", priceNote: "/月 官网价格", recommended: false, comingSoon: true, cta: null },
 ];
 
 export default function Pricing() {

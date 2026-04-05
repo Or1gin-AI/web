@@ -21,25 +21,18 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="pt-40 pb-16 px-6">
+    <section className="flex items-center justify-center px-6" style={{ minHeight: "calc(100vh - 64px)" }}>
       <motion.div
         className="max-w-[1080px] mx-auto text-center"
         variants={stagger}
         initial="hidden"
         animate="visible"
       >
-        <motion.p
-          variants={fadeUp}
-          className="text-[11px] tracking-[5px] text-brand font-serif mb-6"
-        >
-          AUTHENTIC RELAY
-        </motion.p>
-
         <motion.h1
           variants={fadeUp}
           className="font-serif text-3xl md:text-[42px] font-light text-text leading-snug md:leading-relaxed"
         >
-          源于官方，忠于原版
+          AI 界的头等舱
         </motion.h1>
 
         <motion.div
@@ -51,18 +44,26 @@ export default function Hero() {
           variants={fadeUp}
           className="text-[14px] text-text-muted leading-relaxed"
         >
-          为中国用户提供极致的 AI 体验
+          正规邮箱账号 · 美国信用卡订阅 · 纯净家庭 IP
+          <br />
+          告别封号，告别中转站，像美国人一样使用 Claude
         </motion.p>
 
         <motion.div
           variants={fadeUp}
           className="mt-8 flex gap-3 justify-center flex-wrap"
         >
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-whitepaper"))}
+            className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
+          >
+            阅读白皮书
+          </button>
           <a
             href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer"
             className="px-7 py-2.5 bg-dark text-bg text-[13px] rounded hover:opacity-90 transition-opacity"
           >
-            立即开始
+            抢先体验
           </a>
           <a
             href="#services"

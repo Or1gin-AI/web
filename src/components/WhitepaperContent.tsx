@@ -173,10 +173,9 @@ export default function WhitepaperContent() {
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">使用流程</h3>
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           {[
-            { num: "1", Icon: RiKeyLine, title: "OriginAI 账号", desc: "美国信用卡购买\nPro / Team / Max 订阅", tag: "我们完成", highlight: false },
-            { num: "2", Icon: RiBox3Line, title: "安装客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
-            { num: "3", Icon: RiFlashlightLine, title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
-            { num: "4", Icon: RiRobot2Line, title: "使用官方 Claude", desc: "Claude.ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
+            { num: "1", Icon: RiBox3Line, title: "安装 OriginAI 客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
+            { num: "2", Icon: RiFlashlightLine, title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
+            { num: "3", Icon: RiRobot2Line, title: "使用官方 Claude", desc: "Claude.ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
           ].map((step, i) => (
             <div key={step.num} className="contents">
               {i > 0 && <div className="hidden sm:flex items-center text-text-faint text-sm justify-center">→</div>}
@@ -195,7 +194,7 @@ export default function WhitepaperContent() {
           ))}
         </div>
         <p className="text-center text-[13px] text-text-muted mt-4">
-          我们不替换模型、不拦截数据、不做任何中间处理。您使用的就是官方的 Claude。
+          您在 Claude 官方网页和客户端中登录账号，100% 使用 Anthropic 官方服务。我们不替换模型、不拦截数据、不做任何中间处理。
         </p>
       </section>
 

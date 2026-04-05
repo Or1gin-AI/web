@@ -64,7 +64,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="text-[12px] px-5 py-2 bg-dark text-bg rounded cursor-pointer hover:opacity-90 transition-opacity"
           >
-            立即开始
+            抢先体验
           </a>
         </div>
 
@@ -100,7 +100,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="text-[13px] px-5 py-2.5 bg-dark text-bg rounded w-fit cursor-pointer"
               >
-                立即开始
+                抢先体验
               </a>
             </div>
           </motion.div>
