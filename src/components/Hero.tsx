@@ -51,7 +51,7 @@ export default function Hero() {
           variants={fadeUp}
           className="text-[14px] text-text-muted leading-relaxed"
         >
-          为中国用户提供无缝的 AI 体验
+          为中国用户提供极致的 AI 体验
         </motion.p>
 
         <motion.div
