@@ -75,7 +75,7 @@ export default function WhitepaperContentEn() {
           The User's Dilemma: Neither Path Works
         </h2>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          As Claude becomes an indispensable productivity tool for developers and professionals, a large number of users in China face a stark reality: <strong className="text-text font-medium">getting clean, official access to Claude is prohibitively difficult</strong>. The two available paths are both fraught with risk.
+          As Claude becomes an indispensable productivity tool for developers and professionals, a large number of users face a stark reality: <strong className="text-text font-medium">getting clean, official access to Claude is prohibitively difficult</strong>. The two available paths are both fraught with risk.
         </p>
 
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">Path One: Self-Registration — Pay and Get Banned</h3>

@@ -75,7 +75,7 @@ export default function WhitepaperContent() {
           用户困境：两条路都走不通
         </h2>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          随着 Claude 成为开发者和专业人士不可或缺的生产力工具，大量中国用户面临一个现实问题：<strong className="text-text font-medium">想用上纯净的官方 Claude，太难了</strong>。目前市面上的两条路，都充满风险。
+          随着 Claude 成为开发者和专业人士不可或缺的生产力工具，大量用户面临一个现实问题：<strong className="text-text font-medium">想用上纯净的官方 Claude，太难了</strong>。目前市面上的两条路，都充满风险。
         </p>
 
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">路径一：自己注册 — 充值即封号</h3>
