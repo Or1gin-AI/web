@@ -30,7 +30,7 @@ export default function WhitepaperCard() {
               WHITEPAPER
             </p>
             <h3 className="text-[16px] md:text-[17px] font-medium text-text mb-1 truncate">
-              极致的 Claude 体验
+              OriginAI：极致的 Claude 体验
             </h3>
             <p className="text-[13px] text-text-muted">
               正本清源，回归正版。了解我们如何解决 Claude 使用中的核心问题。

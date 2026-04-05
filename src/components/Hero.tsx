@@ -21,7 +21,7 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-12 px-6">
+    <section className="pt-40 pb-16 px-6">
       <motion.div
         className="max-w-[1080px] mx-auto text-center"
         variants={stagger}
