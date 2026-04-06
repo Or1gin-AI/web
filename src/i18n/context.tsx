@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { zh } from "./zh";
 import { en } from "./en";
 
@@ -22,20 +23,19 @@ const LocaleContext = createContext<LocaleContextType>({
   t: en,
 });
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("en");
+export function LocaleProvider({
+  children,
+  initialLocale,
+}: {
+  children: ReactNode;
+  initialLocale: Locale;
+}) {
+  const router = useRouter();
+  const locale = initialLocale;
 
-  useEffect(() => {
-    const saved = localStorage.getItem("locale") as Locale | null;
-    if (saved === "en" || saved === "zh") {
-      setLocale(saved);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("locale", locale);
-    document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
-  }, [locale]);
+  const setLocale = (newLocale: Locale) => {
+    router.push(`/${newLocale}`);
+  };
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale, t: translations[locale] }}>
