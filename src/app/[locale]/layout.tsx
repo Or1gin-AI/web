@@ -22,10 +22,10 @@ const meta: Record<Locale, { title: string; description: string; alt: string; ht
     htmlLang: "en",
   },
   zh: {
-    title: "OriginAI - AI 界的头等舱",
+    title: "OriginAI - 极致的 AI 体验",
     description:
-      "AI 界的头等舱。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
-    alt: "OriginAI — AI 界的头等舱",
+      "极致的 AI 体验。正规邮箱账号、美国信用卡订阅、纯净家庭 IP，告别封号，告别中转站，像美国人一样使用 Claude。",
+    alt: "OriginAI — 极致的 AI 体验",
     htmlLang: "zh-CN",
   },
 };
