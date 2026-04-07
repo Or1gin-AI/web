@@ -16,6 +16,7 @@ export default function Navbar() {
     { label: t.nav.services, href: "#services" },
     { label: t.nav.pricing, href: "#pricing" },
     { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.verify, href: "/verify" },
   ];
 
   useEffect(() => {
@@ -26,6 +27,10 @@ export default function Navbar() {
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
+    if (href.startsWith("/")) {
+      window.location.href = `/${locale}${href}`;
+      return;
+    }
     if (href === "#whitepaper") {
       window.dispatchEvent(new CustomEvent("open-whitepaper"));
       return;

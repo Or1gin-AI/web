@@ -27,8 +27,7 @@ type VerifyState =
   | { step: "running"; sessionId: string }
   | { step: "report"; result: VerifyResult };
 
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const BACKEND_URL = "";
 
 const stagger: Variants = {
   hidden: { opacity: 0 },

@@ -4,6 +4,7 @@ export const zh = {
     services: "服务介绍",
     pricing: "价格方案",
     faq: "FAQ",
+    verify: "照妖镜",
     cta: "抢先体验",
   },
   hero: {

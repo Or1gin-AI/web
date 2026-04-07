@@ -4,6 +4,7 @@ export const en = {
     services: "Services",
     pricing: "Pricing",
     faq: "FAQ",
+    verify: "Verify",
     cta: "Get Early Access",
   },
   hero: {
