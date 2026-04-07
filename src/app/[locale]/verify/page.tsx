@@ -27,7 +27,7 @@ type VerifyState =
   | { step: "running"; sessionId: string }
   | { step: "report"; result: VerifyResult };
 
-const BACKEND_URL = "";
+const BACKEND_URL = "https://verify.originai.cc";
 
 const stagger: Variants = {
   hidden: { opacity: 0 },
