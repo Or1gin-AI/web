@@ -1,11 +1,231 @@
 "use client";
 
-export default function VerifyPipeline(_props: {
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/i18n/context";
+import type { VerifyResult } from "@/app/[locale]/verify/page";
+
+interface TestEntry {
+  phase: number;
+  test: number;
+  name: string;
+  status: "running" | "pass" | "warn" | "fail" | "skip";
+  detail?: string;
+  duration?: number;
+}
+
+interface VerifyPipelineProps {
   sessionId: string;
   backendUrl: string;
-  onComplete: (result: any) => void;
-}) {
+  onComplete: (result: VerifyResult) => void;
+}
+
+const statusConfig = {
+  pass: {
+    bg: "bg-[rgba(107,143,113,0.08)]",
+    icon: "text-[#6b8f71]",
+    symbol: "\u2713",
+  },
+  warn: {
+    bg: "bg-[rgba(184,148,74,0.08)]",
+    icon: "text-[#b8944a]",
+    symbol: "!",
+  },
+  fail: {
+    bg: "bg-[rgba(184,92,92,0.08)]",
+    icon: "text-[#b85c5c]",
+    symbol: "\u2717",
+  },
+  running: {
+    bg: "bg-brand-light",
+    icon: "text-brand animate-pulse",
+    symbol: "\u25cf",
+  },
+  skip: {
+    bg: "",
+    icon: "text-text-faint",
+    symbol: "\u25cb",
+  },
+} as const;
+
+export default function VerifyPipeline({
+  sessionId,
+  backendUrl,
+  onComplete,
+}: VerifyPipelineProps) {
+  const { t } = useLocale();
+  const [tests, setTests] = useState<TestEntry[]>([]);
+  const [currentPhase, setCurrentPhase] = useState(0);
+  const [totalPhases] = useState(4);
+  const esRef = useRef<EventSource | null>(null);
+
+  useEffect(() => {
+    const es = new EventSource(
+      `${backendUrl}/api/verify/${sessionId}/stream`
+    );
+    esRef.current = es;
+
+    es.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+
+        switch (data.type) {
+          case "test-start": {
+            const entry: TestEntry = {
+              phase: data.phase,
+              test: data.test,
+              name: data.name,
+              status: "running",
+            };
+            setTests((prev) => [...prev, entry]);
+            setCurrentPhase(data.phase);
+            break;
+          }
+          case "test-result": {
+            setTests((prev) =>
+              prev.map((t) =>
+                t.phase === data.phase && t.test === data.test
+                  ? {
+                      ...t,
+                      status: data.status,
+                      detail: data.detail,
+                      duration: data.duration,
+                    }
+                  : t
+              )
+            );
+            break;
+          }
+          case "phase-done": {
+            setCurrentPhase(data.phase + 1);
+            break;
+          }
+          case "complete": {
+            es.close();
+            onComplete(data.result);
+            break;
+          }
+        }
+      } catch {
+        // ignore malformed messages
+      }
+    };
+
+    es.onerror = () => {
+      es.close();
+    };
+
+    return () => {
+      es.close();
+    };
+  }, [sessionId, backendUrl, onComplete]);
+
+  // Group tests by phase
+  const phaseGroups: Record<number, TestEntry[]> = {};
+  for (const test of tests) {
+    if (!phaseGroups[test.phase]) phaseGroups[test.phase] = [];
+    phaseGroups[test.phase].push(test);
+  }
+
+  // Calculate progress
+  const totalTests = tests.length;
+  const completedTests = tests.filter((t) => t.status !== "running").length;
+  const progress = totalTests > 0 ? (completedTests / totalTests) * 100 : 0;
+
+  const phaseNames = t.verify.pipeline.phases;
+
   return (
-    <div className="text-text-muted text-[13px] p-6">Loading pipeline...</div>
+    <div className="bg-bg-card border border-border rounded-xl p-7">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <span className="font-serif text-[15px] text-text">
+          {t.verify.pipeline.verifying}
+        </span>
+        <span className="font-mono text-[11px] text-text-muted">
+          {t.verify.pipeline.phase(Math.min(currentPhase + 1, totalPhases), totalPhases)}
+        </span>
+      </div>
+
+      {/* Progress bar */}
+      <div className="h-[3px] bg-bg-alt rounded-full overflow-hidden mb-6">
+        <motion.div
+          className="h-full bg-brand rounded-full"
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
+      </div>
+
+      {/* Phase groups */}
+      <div className="space-y-5">
+        {Array.from({ length: totalPhases }, (_, i) => i).map((phaseIndex) => {
+          const isActive = phaseIndex === currentPhase;
+          const isFuture = phaseIndex > currentPhase;
+          const phaseTests = phaseGroups[phaseIndex] || [];
+
+          return (
+            <div key={phaseIndex}>
+              {/* Phase label */}
+              <div className="flex items-center gap-2 mb-2">
+                <span
+                  className={`font-mono text-[10px] tracking-[1.5px] uppercase ${
+                    isActive ? "text-brand" : "text-text-faint"
+                  }`}
+                >
+                  {phaseNames[phaseIndex] || `Phase ${phaseIndex + 1}`}
+                </span>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+
+              {/* Test rows */}
+              {isFuture && phaseTests.length === 0 ? (
+                <p className="text-[12px] text-text-faint pl-1">
+                  {t.verify.pipeline.pending(0)}
+                </p>
+              ) : (
+                <AnimatePresence mode="popLayout">
+                  {phaseTests.map((test) => {
+                    const cfg = statusConfig[test.status];
+                    return (
+                      <motion.div
+                        key={`${test.phase}-${test.test}`}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className={`flex items-center justify-between px-3 py-2 rounded-lg mb-1 ${cfg.bg}`}
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <span
+                            className={`text-[13px] font-mono w-4 text-center flex-shrink-0 ${cfg.icon}`}
+                          >
+                            {cfg.symbol}
+                          </span>
+                          <span className="text-[13px] text-text truncate">
+                            {test.name}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3 flex-shrink-0 ml-3">
+                          {test.detail && (
+                            <span className="text-[11px] text-text-muted max-w-[180px] truncate">
+                              {test.detail}
+                            </span>
+                          )}
+                          {test.duration != null && (
+                            <span className="text-[11px] font-mono text-text-faint">
+                              {test.duration}ms
+                            </span>
+                          )}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
