@@ -6,7 +6,22 @@ import { useLocale } from "@/i18n/context";
 import VerifyForm from "@/components/verify/VerifyForm";
 import VerifyPipeline from "@/components/verify/VerifyPipeline";
 import VerifyReport from "@/components/verify/VerifyReport";
+import VerifyError from "@/components/verify/VerifyError";
 import Leaderboard from "@/components/verify/Leaderboard";
+
+export interface EvidenceItem {
+  label: string;
+  expected: string;
+  actual: string;
+  correct: boolean;
+}
+
+export interface TestEvidence {
+  expected: string;
+  actual: string;
+  raw?: string;
+  items?: EvidenceItem[];
+}
 
 export interface VerifyResult {
   verdict: "real" | "suspicious" | "fake";
@@ -19,13 +34,15 @@ export interface VerifyResult {
     status: "pass" | "warn" | "fail" | "skip";
     detail: string;
     duration: number;
+    evidence?: TestEvidence;
   }[];
 }
 
 type VerifyState =
   | { step: "form" }
   | { step: "running"; sessionId: string }
-  | { step: "report"; result: VerifyResult };
+  | { step: "report"; result: VerifyResult }
+  | { step: "error"; message: string };
 
 const BACKEND_URL = "https://verify.originai.cc";
 
@@ -57,8 +74,8 @@ export default function VerifyPage() {
       });
       const data = await res.json();
       setState({ step: "running", sessionId: data.sessionId });
-    } catch {
-      // TODO: error handling
+    } catch (err: any) {
+      setState({ step: "error", message: err.message || "无法连接到验证服务" });
     }
   };
 
@@ -121,6 +138,7 @@ export default function VerifyPage() {
                   sessionId={state.sessionId}
                   backendUrl={BACKEND_URL}
                   onComplete={handleComplete}
+                  onError={(msg) => setState({ step: "error", message: msg })}
                 />
               )}
               {state.step === "report" && (
@@ -128,6 +146,12 @@ export default function VerifyPage() {
                   result={state.result}
                   onReset={handleReset}
                   backendUrl={BACKEND_URL}
+                />
+              )}
+              {state.step === "error" && (
+                <VerifyError
+                  message={state.message}
+                  onRetry={handleReset}
                 />
               )}
             </div>

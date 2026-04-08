@@ -93,14 +93,14 @@ export const zh = {
       apiKey: 'API Key',
       apiKeyHint: '密钥仅在检测期间保留于内存，不会被存储',
       model: '验证模型',
-      modelHint: '默认 Anthropic 原生格式，OpenAI 兼容请在 URL 包含 /v1',
-      fullAudit: '完整审计 · 约 2 分钟',
+      modelHint: '系统会自动检测 API 格式（Anthropic / OpenAI 兼容）',
+      fullAudit: '完整审计 · 约 1 分钟',
       quickScan: '快速扫描',
     },
     pipeline: {
       verifying: '正在验证',
       phase: (n: number, total: number) => `${n} / ${total}`,
-      phases: ['基础设施侦察', '中转站操控检测', '模型身份验证', '能力基准测试'],
+      phases: ['协议指纹', '注入与覆盖', '提取与越狱', '模型指纹'],
       pending: (n: number) => `${n} 项等待中`,
       running: '运行中',
     },
@@ -117,6 +117,15 @@ export const zh = {
       download: '下载报告',
       rerun: '重新检测',
       submitToBoard: '匿名提交到红黑榜',
+    },
+    evidence: {
+      expected: '期望',
+      actual: '实际',
+      rawOutput: '原始输出',
+    },
+    error: {
+      title: '检测失败',
+      retry: '重试',
     },
     leaderboard: {
       label: 'LEADERBOARD',

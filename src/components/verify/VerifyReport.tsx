@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/i18n/context";
+import EvidenceCard from "@/components/verify/EvidenceCard";
 import type { VerifyResult } from "@/app/[locale]/verify/page";
 
 interface VerifyReportProps {
@@ -12,60 +13,26 @@ interface VerifyReportProps {
 }
 
 const verdictConfig = {
-  real: {
-    icon: "\u2713",
-    color: "text-[#6b8f71]",
-    bg: "bg-[rgba(107,143,113,0.08)]",
-    border: "border-[rgba(107,143,113,0.2)]",
-  },
-  suspicious: {
-    icon: "!",
-    color: "text-[#b8944a]",
-    bg: "bg-[rgba(184,148,74,0.08)]",
-    border: "border-[rgba(184,148,74,0.2)]",
-  },
-  fake: {
-    icon: "\u2717",
-    color: "text-[#b85c5c]",
-    bg: "bg-[rgba(184,92,92,0.08)]",
-    border: "border-[rgba(184,92,92,0.2)]",
-  },
+  real: { icon: "\u2713", color: "text-[#6b8f71]", bg: "bg-[rgba(107,143,113,0.08)]", border: "border-[rgba(107,143,113,0.2)]" },
+  suspicious: { icon: "!", color: "text-[#b8944a]", bg: "bg-[rgba(184,148,74,0.08)]", border: "border-[rgba(184,148,74,0.2)]" },
+  fake: { icon: "\u2717", color: "text-[#b85c5c]", bg: "bg-[rgba(184,92,92,0.08)]", border: "border-[rgba(184,92,92,0.2)]" },
 } as const;
 
 const statusConfig = {
-  pass: {
-    bg: "bg-[rgba(107,143,113,0.08)]",
-    icon: "text-[#6b8f71]",
-    symbol: "\u2713",
-  },
-  warn: {
-    bg: "bg-[rgba(184,148,74,0.08)]",
-    icon: "text-[#b8944a]",
-    symbol: "!",
-  },
-  fail: {
-    bg: "bg-[rgba(184,92,92,0.08)]",
-    icon: "text-[#b85c5c]",
-    symbol: "\u2717",
-  },
-  skip: {
-    bg: "",
-    icon: "text-text-faint",
-    symbol: "\u25cb",
-  },
+  pass: { bg: "bg-[rgba(107,143,113,0.08)]", icon: "text-[#6b8f71]", symbol: "\u2713" },
+  warn: { bg: "bg-[rgba(184,148,74,0.08)]", icon: "text-[#b8944a]", symbol: "!" },
+  fail: { bg: "bg-[rgba(184,92,92,0.08)]", icon: "text-[#b85c5c]", symbol: "\u2717" },
+  skip: { bg: "", icon: "text-text-faint", symbol: "\u25cb" },
 } as const;
 
-export default function VerifyReport({
-  result,
-  onReset,
-}: VerifyReportProps) {
+export default function VerifyReport({ result, onReset }: VerifyReportProps) {
   const { t } = useLocale();
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
+  const [expandedTest, setExpandedTest] = useState<string | null>(null);
 
   const vCfg = verdictConfig[result.verdict];
   const phaseNames = t.verify.pipeline.phases;
 
-  // Group results by phase
   const phaseGroups: Record<number, typeof result.results> = {};
   for (const r of result.results) {
     if (!phaseGroups[r.phase]) phaseGroups[r.phase] = [];
@@ -81,6 +48,10 @@ export default function VerifyReport({
     { key: "skip" as const, value: result.stats.skip, color: "text-text-faint" },
   ];
 
+  const toggleTest = (key: string) => {
+    setExpandedTest((prev) => (prev === key ? null : key));
+  };
+
   return (
     <div className="space-y-5">
       {/* Verdict card */}
@@ -90,20 +61,14 @@ export default function VerifyReport({
         transition={{ duration: 0.4 }}
         className={`${vCfg.bg} border ${vCfg.border} rounded-xl p-7 text-center`}
       >
-        <div
-          className={`text-[32px] font-mono ${vCfg.color} mb-2`}
-        >
-          {vCfg.icon}
-        </div>
+        <div className={`text-[32px] font-mono ${vCfg.color} mb-2`}>{vCfg.icon}</div>
         <h2 className={`font-serif text-[18px] ${vCfg.color} mb-1.5`}>
           {t.verify.report[result.verdict]}
         </h2>
         <p className="text-[13px] text-text-muted">
           {t.verify.report.confidence} {result.confidence}%
           {failCount > 0 && (
-            <span className="ml-2">
-              &middot; {failCount} {t.verify.report.issues}
-            </span>
+            <span className="ml-2">&middot; {failCount} {t.verify.report.issues}</span>
           )}
         </p>
       </motion.div>
@@ -111,16 +76,9 @@ export default function VerifyReport({
       {/* Stats grid */}
       <div className="grid grid-cols-4 gap-3">
         {statItems.map((item) => (
-          <div
-            key={item.key}
-            className="bg-bg-card border border-border rounded-lg p-3 text-center"
-          >
-            <div className={`font-serif text-[22px] ${item.color}`}>
-              {item.value}
-            </div>
-            <div className="text-[11px] text-text-muted mt-0.5">
-              {t.verify.report[item.key]}
-            </div>
+          <div key={item.key} className="bg-bg-card border border-border rounded-lg p-3 text-center">
+            <div className={`font-serif text-[22px] ${item.color}`}>{item.value}</div>
+            <div className="text-[11px] text-text-muted mt-0.5">{t.verify.report[item.key]}</div>
           </div>
         ))}
       </div>
@@ -138,18 +96,13 @@ export default function VerifyReport({
           };
 
           return (
-            <div
-              key={phaseNum}
-              className="bg-bg-card border border-border rounded-lg overflow-hidden"
-            >
+            <div key={phaseNum} className="bg-bg-card border border-border rounded-lg overflow-hidden">
               <button
-                onClick={() =>
-                  setExpandedPhase(isExpanded ? null : phaseNum)
-                }
+                onClick={() => setExpandedPhase(isExpanded ? null : phaseNum)}
                 className="w-full flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-bg-alt/50 transition-colors"
               >
                 <span className="text-[13px] text-text font-medium">
-                  {phaseNames[phaseNum] || `Phase ${phaseNum + 1}`}
+                  {phaseNames[phaseNum - 1] || `Phase ${phaseNum}`}
                 </span>
                 <div className="flex items-center gap-2">
                   {phaseCounts.pass > 0 && (
@@ -167,11 +120,7 @@ export default function VerifyReport({
                       {phaseCounts.fail}
                     </span>
                   )}
-                  <span
-                    className={`text-[11px] text-text-faint transition-transform ${
-                      isExpanded ? "rotate-180" : ""
-                    }`}
-                  >
+                  <span className={`text-[11px] text-text-faint transition-transform ${isExpanded ? "rotate-180" : ""}`}>
                     &darr;
                   </span>
                 </div>
@@ -189,33 +138,48 @@ export default function VerifyReport({
                     <div className="px-3 pb-3 space-y-1">
                       {phaseTests.map((test) => {
                         const sCfg = statusConfig[test.status];
+                        const testKey = `${test.phase}-${test.test}`;
+                        const isTestExpanded = expandedTest === testKey;
+                        const hasEvidence = !!test.evidence;
+
                         return (
-                          <div
-                            key={`${test.phase}-${test.test}`}
-                            className={`flex items-center justify-between px-3 py-2 rounded-lg ${sCfg.bg}`}
-                          >
-                            <div className="flex items-center gap-2.5 min-w-0">
-                              <span
-                                className={`text-[13px] font-mono w-4 text-center flex-shrink-0 ${sCfg.icon}`}
-                              >
-                                {sCfg.symbol}
-                              </span>
-                              <span className="text-[13px] text-text truncate">
-                                {test.name}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-3 flex-shrink-0 ml-3">
-                              {test.detail && (
-                                <span className="text-[11px] text-text-muted max-w-[180px] truncate">
-                                  {test.detail}
+                          <div key={testKey}>
+                            <div
+                              className={`flex items-center justify-between px-3 py-2 rounded-lg ${sCfg.bg} ${
+                                hasEvidence ? "cursor-pointer hover:opacity-80" : ""
+                              }`}
+                              onClick={() => hasEvidence && toggleTest(testKey)}
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <span className={`text-[13px] font-mono w-4 text-center flex-shrink-0 ${sCfg.icon}`}>
+                                  {sCfg.symbol}
                                 </span>
-                              )}
-                              {test.duration != null && (
-                                <span className="text-[11px] font-mono text-text-faint">
-                                  {test.duration}ms
-                                </span>
-                              )}
+                                <span className="text-[13px] text-text truncate">{test.name}</span>
+                              </div>
+                              <div className="flex items-center gap-3 flex-shrink-0 ml-3">
+                                {test.detail && (
+                                  <span className="text-[11px] text-text-muted max-w-[180px] truncate">
+                                    {test.detail}
+                                  </span>
+                                )}
+                                {test.duration != null && (
+                                  <span className="text-[11px] font-mono text-text-faint">
+                                    {test.duration}ms
+                                  </span>
+                                )}
+                                {hasEvidence && (
+                                  <span className={`text-[10px] text-text-faint transition-transform ${isTestExpanded ? "rotate-180" : ""}`}>
+                                    {"\u25bc"}
+                                  </span>
+                                )}
+                              </div>
                             </div>
+
+                            <AnimatePresence>
+                              {isTestExpanded && test.evidence && (
+                                <EvidenceCard evidence={test.evidence} status={test.status} />
+                              )}
+                            </AnimatePresence>
                           </div>
                         );
                       })}

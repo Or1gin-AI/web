@@ -93,14 +93,14 @@ export const en = {
       apiKey: 'API Key',
       apiKeyHint: 'Your key is only held in memory during the test and never stored',
       model: 'Model to verify',
-      modelHint: 'Defaults to Anthropic native format. For OpenAI-compatible, include /v1 in URL',
-      fullAudit: 'Full Audit · ~2 min',
+      modelHint: 'API format is auto-detected (Anthropic / OpenAI compatible)',
+      fullAudit: 'Full Audit · ~1 min',
       quickScan: 'Quick Scan',
     },
     pipeline: {
       verifying: 'Verifying',
       phase: (n: number, total: number) => `${n} / ${total}`,
-      phases: ['Infrastructure Recon', 'Relay Manipulation', 'Model Identity', 'Capability Benchmark'],
+      phases: ['Protocol Fingerprint', 'Injection & Override', 'Extraction & Jailbreak', 'Model Fingerprint'],
       pending: (n: number) => `${n} tests pending`,
       running: 'running',
     },
@@ -117,6 +117,15 @@ export const en = {
       download: 'Download Report',
       rerun: 'Re-run',
       submitToBoard: 'Submit anonymously to leaderboard',
+    },
+    evidence: {
+      expected: 'Expected',
+      actual: 'Actual',
+      rawOutput: 'Raw Output',
+    },
+    error: {
+      title: 'Verification Failed',
+      retry: 'Retry',
     },
     leaderboard: {
       label: 'LEADERBOARD',
