@@ -73,25 +73,7 @@ const fadeUp: Variants = {
 
 export default function VerifyPage() {
   const { t } = useLocale();
-  // TODO: remove mock — preview only
-  const mockResult: VerifyResult = {
-    verdict: "fake", confidence: 84,
-    stats: { pass: 6, warn: 2, fail: 3, skip: 0 },
-    results: [
-      { phase: 1, test: 1, name: "Inference Geo Detection", status: "pass", detail: "", duration: 320 },
-      { phase: 1, test: 2, name: "Ratelimit Header Fingerprint", status: "warn", detail: "", duration: 210 },
-      { phase: 1, test: 3, name: "Message ID Format", status: "fail", detail: "", duration: 180 },
-      { phase: 1, test: 4, name: "Tool Use ID Prefix", status: "fail", detail: "", duration: 150 },
-      { phase: 1, test: 5, name: "SSE Event Chain", status: "pass", detail: "", duration: 410 },
-      { phase: 2, test: 1, name: "Token Injection", status: "fail", detail: "", duration: 280 },
-      { phase: 2, test: 2, name: "Cat Test", status: "pass", detail: "", duration: 190 },
-      { phase: 2, test: 3, name: "Identity Override", status: "warn", detail: "", duration: 220 },
-      { phase: 4, test: 1, name: "Tokenizer Fingerprint", status: "pass", detail: "", duration: 160 },
-      { phase: 4, test: 2, name: "Extended Thinking Signature", status: "pass", detail: "", duration: 890 },
-      { phase: 4, test: 3, name: "Model Self-ID", status: "pass", detail: "", duration: 130 },
-    ],
-  };
-  const [state, setState] = useState<VerifyState>({ step: "report", result: mockResult });
+  const [state, setState] = useState<VerifyState>({ step: "form" });
 
   const handleStart = async (
     baseUrl: string,

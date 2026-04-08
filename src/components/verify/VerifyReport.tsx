@@ -83,21 +83,18 @@ export default function VerifyReport({ result, onReset, backendUrl }: VerifyRepo
     if (!snapRef.current || snapping) return;
     setSnapping(true);
     try {
-      const html2canvas = (await import("html2canvas")).default;
-      const canvas = await html2canvas(snapRef.current, {
-        scale: 2,
+      const { toPng } = await import("html-to-image");
+      const dataUrl = await toPng(snapRef.current, {
+        pixelRatio: 2,
         backgroundColor: "#faf8f5",
-        useCORS: true,
-        logging: false,
-        scrollY: 0,
-        windowHeight: snapRef.current.scrollHeight,
-        height: snapRef.current.scrollHeight,
+        skipFonts: true,
+        style: { overflow: "visible" },
       });
       const link = document.createElement("a");
       const now = new Date();
       const ts = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}`;
       link.download = `verify-report-${ts}.png`;
-      link.href = canvas.toDataURL("image/png");
+      link.href = dataUrl;
       link.click();
     } catch {
       // silent
@@ -205,130 +202,90 @@ export default function VerifyReport({ result, onReset, backendUrl }: VerifyRepo
                   </div>
                 </div>
 
-                {/* Check list */}
-                <div className={`bg-bg-card border border-border border-l-[3px] ${v.border} rounded-2xl p-4`}>
-                  {/* Progress bar */}
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] text-text-muted">{t.verify.report.checks}</span>
-                    <span className="text-[11px] text-text-muted">
-                      {t.verify.report.passedOf(stats.pass, totalNonSkip)}
-                    </span>
-                  </div>
-                  <div className="h-1 bg-bg-alt rounded-full overflow-hidden mb-3">
-                    <motion.div
-                      className="h-full rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${score}%` }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      style={{ backgroundColor: v.bar }}
-                    />
-                  </div>
-
-                  {/* Items */}
-                  <div className="space-y-0.5">
-                    {result.results.map((test) => {
-                      const ci = checkIcon[test.status] || checkIcon.skip;
-                      return (
-                        <div
-                          key={`${test.phase}-${test.test}`}
-                          className="flex items-center justify-between py-1.5 px-1"
-                        >
-                          <div className="flex items-center gap-2 min-w-0">
-                            <span className={`font-mono text-[13px] w-4 text-center flex-shrink-0 font-bold ${ci.cls}`}>
-                              {ci.symbol}
-                            </span>
-                            <span className="text-[13px] text-text truncate">
-                              {test.name}
-                            </span>
-                          </div>
-                          {test.duration != null && (
-                            <span className="text-[11px] font-mono text-text-faint flex-shrink-0 ml-2">
-                              {test.duration}ms
-                            </span>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Quality Report — Phase 5 */}
-                {result.quality && result.quality.dilution >= 0 && (
-                  <div className="mt-4 bg-bg-card border border-border rounded-2xl p-4">
+                {/* Fingerprint + Quality side by side */}
+                {/* Fingerprint + Quality side by side */}
+                <div className="grid grid-cols-2 gap-3">
+                  {/* Fingerprint */}
+                  <div className="bg-bg-card border border-border rounded-2xl p-4 flex flex-col">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="font-mono text-[10px] tracking-[2px] text-brand uppercase">
-                        输出质量
+                        {t.verify.report.fingerprint}
                       </span>
                       <div className="flex-1 h-px bg-border" />
                     </div>
 
-                    {/* Dilution + Predicted Model */}
-                    <div className="grid grid-cols-2 gap-2.5 mb-3">
-                      <div className="bg-bg border border-border rounded-xl py-3 text-center">
-                        <div
-                          className="text-[20px] font-bold"
-                          style={{
-                            color: result.quality.dilution < 15
-                              ? "#2d8a56"
-                              : result.quality.dilution < 35
-                              ? "#d97706"
-                              : "#c53030",
-                          }}
-                        >
-                          {result.quality.dilution}%
-                        </div>
-                        <div className="text-[10px] text-text-muted mt-0.5">掺水率</div>
+                    <div className="bg-bg border border-border rounded-xl py-3 text-center mb-2">
+                      <div className="text-[20px] font-bold text-[#c53030]">
+                        {stats.fail + stats.warn}
                       </div>
-                      <div className="bg-bg border border-border rounded-xl py-3 text-center">
-                        <div className="text-[13px] font-bold text-text truncate px-2">
-                          {result.quality.predictedModel}
-                        </div>
-                        <div className="text-[10px] text-text-muted mt-0.5">
-                          推测模型 ({result.quality.modelConfidence}%)
-                        </div>
-                      </div>
+                      <div className="text-[10px] text-text-muted mt-0.5">{t.verify.report.issues}</div>
                     </div>
 
-                    {/* Similarity bars */}
-                    <div className="space-y-1.5 mb-3">
-                      {Object.entries(result.quality.similarities)
-                        .sort(([, a], [, b]) => b - a)
-                        .map(([model, sim]) => (
-                          <div key={model} className="flex items-center gap-2">
-                            <span className="text-[11px] text-text-muted w-[140px] truncate flex-shrink-0">
-                              {model}
-                            </span>
-                            <div className="flex-1 h-1.5 bg-bg-alt rounded-full overflow-hidden">
-                              <div
-                                className="h-full rounded-full"
-                                style={{
-                                  width: `${Math.max(sim * 100, 0)}%`,
-                                  backgroundColor:
-                                    model.includes("opus")
-                                      ? "#2d8a56"
-                                      : model.includes("sonnet")
-                                      ? "#3b82f6"
-                                      : model.includes("haiku")
-                                      ? "#8b5cf6"
-                                      : "#6b7280",
-                                }}
-                              />
-                            </div>
-                            <span className="text-[11px] font-mono text-text-faint w-[40px] text-right flex-shrink-0">
-                              {(sim * 100).toFixed(1)}%
-                            </span>
-                          </div>
-                        ))}
-                    </div>
-
-                    {/* Summary */}
-                    {result.quality.summary && (
-                      <p className="text-[12px] text-text-muted leading-relaxed border-t border-border pt-3">
-                        {result.quality.summary}
-                      </p>
+                    {result.results.filter((r) => r.status === "fail" || r.status === "warn").length > 0 ? (
+                      <div className="space-y-1 mt-auto">
+                        {result.results
+                          .filter((r) => r.status === "fail" || r.status === "warn")
+                          .map((test) => {
+                            const ci = checkIcon[test.status] || checkIcon.skip;
+                            return (
+                              <div key={`${test.phase}-${test.test}`} className="flex items-center gap-1.5 py-0.5">
+                                <span className={`font-mono text-[11px] w-3.5 text-center flex-shrink-0 font-bold ${ci.cls}`}>
+                                  {ci.symbol}
+                                </span>
+                                <span className="text-[11px] text-text-muted truncate">{test.name}</span>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    ) : (
+                      <p className="text-[11px] text-[#2d8a56] mt-auto">{t.verify.report.allPassed}</p>
                     )}
                   </div>
-                )}
+
+                  {/* Quality */}
+                  {result.quality && result.quality.dilution >= 0 ? (
+                    (() => {
+                      const matchRate = 100 - result.quality.dilution;
+                      return (
+                        <div className="bg-bg-card border border-border rounded-2xl p-4 flex flex-col">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="font-mono text-[10px] tracking-[2px] text-brand uppercase">
+                              {t.verify.report.quality}
+                            </span>
+                            <div className="flex-1 h-px bg-border" />
+                          </div>
+
+                          <div className="bg-bg border border-border rounded-xl py-3 text-center mb-2">
+                            <div
+                              className="text-[20px] font-bold"
+                              style={{
+                                color: matchRate >= 85
+                                  ? "#2d8a56"
+                                  : matchRate >= 65
+                                  ? "#d97706"
+                                  : "#c53030",
+                              }}
+                            >
+                              {matchRate}%
+                            </div>
+                            <div className="text-[10px] text-text-muted mt-0.5">{t.verify.report.matchRate}</div>
+                          </div>
+
+                          {result.quality.summary && (
+                            <p className="text-[11px] text-text-muted leading-relaxed">
+                              {result.quality.summary}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })()
+                  ) : (
+                    <div className="bg-bg-card border border-border rounded-2xl p-4 flex flex-col items-center justify-center">
+                      <span className="text-[11px] text-text-faint">{t.verify.report.quality}</span>
+                      <span className="text-[10px] text-text-faint mt-1">—</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 

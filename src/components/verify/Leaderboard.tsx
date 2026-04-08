@@ -31,9 +31,9 @@ interface LeaderboardData {
 }
 
 const tagStyles: Record<string, string> = {
-  "\u6a21\u578b\u66ff\u6362": "bg-[rgba(184,92,92,0.08)] text-[#b85c5c]",
-  "\u9690\u85cf\u6ce8\u5165": "bg-[rgba(184,148,74,0.08)] text-[#b8944a]",
-  "\u4e0a\u4e0b\u6587\u622a\u65ad": "bg-[rgba(184,92,92,0.08)] text-[#b85c5c]",
+  "\u6a21\u578b\u66ff\u6362": "bg-[rgba(197,48,48,0.08)] text-[#c53030]",
+  "\u9690\u85cf\u6ce8\u5165": "bg-[rgba(217,119,6,0.08)] text-[#d97706]",
+  "\u4e0a\u4e0b\u6587\u622a\u65ad": "bg-[rgba(197,48,48,0.08)] text-[#c53030]",
 };
 
 function timeAgo(dateStr: string): string {
@@ -95,7 +95,7 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
           onClick={() => setTab("shame")}
           className={`flex-1 text-[13px] py-2 rounded-md transition-all cursor-pointer ${
             isShame
-              ? "bg-bg-card shadow-sm text-[#b85c5c] font-medium"
+              ? "bg-bg-card shadow-sm text-[#c53030] font-medium"
               : "text-text-muted hover:text-text"
           }`}
         >
@@ -105,7 +105,7 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
           onClick={() => setTab("honor")}
           className={`flex-1 text-[13px] py-2 rounded-md transition-all cursor-pointer ${
             !isShame
-              ? "bg-bg-card shadow-sm text-[#6b8f71] font-medium"
+              ? "bg-bg-card shadow-sm text-[#2d8a56] font-medium"
               : "text-text-muted hover:text-text"
           }`}
         >
@@ -117,7 +117,7 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
       <div className="flex items-center gap-2">
         <span
           className={`w-1.5 h-1.5 rounded-full ${
-            isShame ? "bg-[#b85c5c]" : "bg-[#6b8f71]"
+            isShame ? "bg-[#c53030]" : "bg-[#2d8a56]"
           }`}
         />
         <span className="text-[13px] text-text">
@@ -165,7 +165,7 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
                       key={j}
                       className={`text-[11px] px-2 py-0.5 rounded ${
                         tagStyles[issue] ||
-                        "bg-[rgba(184,92,92,0.08)] text-[#b85c5c]"
+                        "bg-[rgba(197,48,48,0.08)] text-[#c53030]"
                       }`}
                     >
                       {issue}
@@ -174,7 +174,7 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
                 </div>
               ) : (
                 <div className="mb-2">
-                  <span className="text-[11px] text-[#6b8f71] bg-[rgba(107,143,113,0.08)] px-2 py-0.5 rounded">
+                  <span className="text-[11px] text-[#2d8a56] bg-[rgba(45,138,86,0.08)] px-2 py-0.5 rounded">
                     {t.verify.leaderboard.passCount(
                       (entry as HonorEntry).passCount,
                       (entry as HonorEntry).totalCount
@@ -187,7 +187,7 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
               <div className="h-[2px] bg-bg-alt rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full ${
-                    isShame ? "bg-[#b85c5c]" : "bg-[#6b8f71]"
+                    isShame ? "bg-[#c53030]" : "bg-[#2d8a56]"
                   }`}
                   style={{ width: `${Math.min(entry.score, 100)}%` }}
                 />

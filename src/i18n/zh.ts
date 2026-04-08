@@ -123,6 +123,11 @@ export const zh = {
       snapshot: '保存检测快照',
       rerun: '重新检测',
       submitToBoard: '提交到红黑榜',
+      fingerprint: '指纹检测',
+      passRate: '通过率',
+      quality: '输出质量',
+      matchRate: 'Opus 匹配度',
+      allPassed: '全部通过，未发现异常',
     },
     evidence: {
       expected: '期望',

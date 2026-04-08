@@ -123,6 +123,11 @@ export const en = {
       snapshot: 'Save Snapshot',
       rerun: 'Re-run',
       submitToBoard: 'Submit to Leaderboard',
+      fingerprint: 'Fingerprint',
+      passRate: 'Pass Rate',
+      quality: 'Output Quality',
+      matchRate: 'Opus Match',
+      allPassed: 'All passed, no issues found',
     },
     evidence: {
       expected: 'Expected',

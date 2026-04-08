@@ -10,9 +10,9 @@ interface EvidenceCardProps {
 }
 
 const borderColors = {
-  pass: "border-[#6b8f71]",
-  warn: "border-[#b8944a]",
-  fail: "border-[#b85c5c]",
+  pass: "border-[#2d8a56]",
+  warn: "border-[#d97706]",
+  fail: "border-[#c53030]",
   skip: "border-border",
 } as const;
 
@@ -30,8 +30,8 @@ export default function EvidenceCard({ evidence, status }: EvidenceCardProps) {
       <div className="pt-2 pb-1 px-1 space-y-3">
         {/* Expected vs Actual comparison */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-[rgba(107,143,113,0.06)] border border-[rgba(107,143,113,0.2)] rounded-lg p-3">
-            <div className="text-[10px] font-mono tracking-wider text-[#6b8f71] mb-1.5">
+          <div className="bg-[rgba(45,138,86,0.06)] border border-[rgba(45,138,86,0.2)] rounded-xl p-3">
+            <div className="text-[10px] font-mono tracking-wider text-[#2d8a56] mb-1.5">
               {t.verify.evidence.expected}
             </div>
             <div className="text-[12px] text-text leading-relaxed">
@@ -39,15 +39,15 @@ export default function EvidenceCard({ evidence, status }: EvidenceCardProps) {
             </div>
           </div>
           <div
-            className={`bg-[rgba(184,92,92,0.04)] border ${borderColors[status]} rounded-lg p-3`}
+            className={`bg-[rgba(197,48,48,0.04)] border ${borderColors[status]} rounded-xl p-3`}
           >
             <div
               className={`text-[10px] font-mono tracking-wider mb-1.5 ${
                 status === "pass"
-                  ? "text-[#6b8f71]"
+                  ? "text-[#2d8a56]"
                   : status === "warn"
-                    ? "text-[#b8944a]"
-                    : "text-[#b85c5c]"
+                    ? "text-[#d97706]"
+                    : "text-[#c53030]"
               }`}
             >
               {t.verify.evidence.actual}
@@ -66,13 +66,13 @@ export default function EvidenceCard({ evidence, status }: EvidenceCardProps) {
                 key={i}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-[11px] ${
                   item.correct
-                    ? "bg-[rgba(107,143,113,0.05)]"
-                    : "bg-[rgba(184,92,92,0.05)]"
+                    ? "bg-[rgba(45,138,86,0.05)]"
+                    : "bg-[rgba(197,48,48,0.05)]"
                 }`}
               >
                 <span
                   className={`font-mono w-3 text-center flex-shrink-0 ${
-                    item.correct ? "text-[#6b8f71]" : "text-[#b85c5c]"
+                    item.correct ? "text-[#2d8a56]" : "text-[#c53030]"
                   }`}
                 >
                   {item.correct ? "\u2713" : "\u2717"}
@@ -88,7 +88,7 @@ export default function EvidenceCard({ evidence, status }: EvidenceCardProps) {
 
         {/* Raw output */}
         {evidence.raw && (
-          <div className="bg-[#f5f3f0] rounded-md p-3">
+          <div className="bg-[#f5f3f0] rounded-xl p-3">
             <div className="text-[10px] font-mono tracking-wider text-text-faint mb-1.5">
               {t.verify.evidence.rawOutput}
             </div>
