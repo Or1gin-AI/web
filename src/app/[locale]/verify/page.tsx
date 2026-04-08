@@ -23,6 +23,20 @@ export interface TestEvidence {
   items?: EvidenceItem[];
 }
 
+export interface QualityReport {
+  dilution: number;
+  predictedModel: string;
+  modelConfidence: number;
+  similarities: Record<string, number>;
+  summary: string;
+  probeResults: {
+    probeId: string;
+    similarities: Record<string, number>;
+    mostSimilar: string;
+    targetResponse: string;
+  }[];
+}
+
 export interface VerifyResult {
   verdict: "real" | "suspicious" | "fake";
   confidence: number;
@@ -36,6 +50,7 @@ export interface VerifyResult {
     duration: number;
     evidence?: TestEvidence;
   }[];
+  quality?: QualityReport;
 }
 
 type VerifyState =
@@ -58,8 +73,25 @@ const fadeUp: Variants = {
 
 export default function VerifyPage() {
   const { t } = useLocale();
-  const [state, setState] = useState<VerifyState>({ step: "form" });
-  const [loading, setLoading] = useState(false);
+  // TODO: remove mock — preview only
+  const mockResult: VerifyResult = {
+    verdict: "fake", confidence: 84,
+    stats: { pass: 6, warn: 2, fail: 3, skip: 0 },
+    results: [
+      { phase: 1, test: 1, name: "Inference Geo Detection", status: "pass", detail: "", duration: 320 },
+      { phase: 1, test: 2, name: "Ratelimit Header Fingerprint", status: "warn", detail: "", duration: 210 },
+      { phase: 1, test: 3, name: "Message ID Format", status: "fail", detail: "", duration: 180 },
+      { phase: 1, test: 4, name: "Tool Use ID Prefix", status: "fail", detail: "", duration: 150 },
+      { phase: 1, test: 5, name: "SSE Event Chain", status: "pass", detail: "", duration: 410 },
+      { phase: 2, test: 1, name: "Token Injection", status: "fail", detail: "", duration: 280 },
+      { phase: 2, test: 2, name: "Cat Test", status: "pass", detail: "", duration: 190 },
+      { phase: 2, test: 3, name: "Identity Override", status: "warn", detail: "", duration: 220 },
+      { phase: 4, test: 1, name: "Tokenizer Fingerprint", status: "pass", detail: "", duration: 160 },
+      { phase: 4, test: 2, name: "Extended Thinking Signature", status: "pass", detail: "", duration: 890 },
+      { phase: 4, test: 3, name: "Model Self-ID", status: "pass", detail: "", duration: 130 },
+    ],
+  };
+  const [state, setState] = useState<VerifyState>({ step: "report", result: mockResult });
 
   const handleStart = async (
     baseUrl: string,
@@ -67,7 +99,6 @@ export default function VerifyPage() {
     model: string,
     mode: "full" | "quick"
   ) => {
-    setLoading(true);
     try {
       const res = await fetch(`${BACKEND_URL}/api/verify/start`, {
         method: "POST",
@@ -78,8 +109,6 @@ export default function VerifyPage() {
       setState({ step: "running", sessionId: data.sessionId });
     } catch (err: any) {
       setState({ step: "error", message: err.message || "无法连接到验证服务" });
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -93,10 +122,10 @@ export default function VerifyPage() {
 
   return (
     <section className="py-16 px-6">
-      <div className="max-w-[1080px] mx-auto">
+      <div className="max-w-[680px] mx-auto">
         {/* Hero */}
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-10"
           variants={stagger}
           initial="hidden"
           animate="visible"
@@ -109,68 +138,57 @@ export default function VerifyPage() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="font-serif text-3xl md:text-[42px] font-light text-text leading-snug md:leading-relaxed"
+            className="font-serif text-3xl md:text-[38px] font-light text-text leading-snug"
           >
             {t.verify.title}
           </motion.h1>
-          <motion.div
-            variants={fadeUp}
-            className="w-10 h-px bg-brand mx-auto my-6"
-          />
           <motion.p
             variants={fadeUp}
-            className="text-[14px] text-text-muted leading-relaxed"
+            className="text-[13px] text-text-muted leading-relaxed mt-4 max-w-md mx-auto"
           >
             {t.verify.subtitle}
           </motion.p>
         </motion.div>
 
-        {/* Two-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left column — sticky */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[10px] tracking-[2px] text-brand uppercase">
-                {t.verify.label}
-              </span>
-              <div className="flex-1 h-px bg-border" />
-            </div>
-            <div className="md:sticky md:top-24">
-              {state.step === "form" && <VerifyForm onStart={handleStart} loading={loading} />}
-              {state.step === "running" && (
-                <VerifyPipeline
-                  sessionId={state.sessionId}
-                  backendUrl={BACKEND_URL}
-                  onComplete={handleComplete}
-                  onError={(msg) => setState({ step: "error", message: msg })}
-                />
-              )}
-              {state.step === "report" && (
-                <VerifyReport
-                  result={state.result}
-                  onReset={handleReset}
-                  backendUrl={BACKEND_URL}
-                />
-              )}
-              {state.step === "error" && (
-                <VerifyError
-                  message={state.message}
-                  onRetry={handleReset}
-                />
-              )}
-            </div>
-          </div>
+        {/* Form — always visible */}
+        <div className="mb-5">
+          <VerifyForm onStart={handleStart} loading={state.step === "running"} />
+        </div>
 
-          {/* Right column — leaderboard */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[10px] tracking-[2px] text-brand uppercase">
-                {t.verify.leaderboard.label}
-              </span>
-              <div className="flex-1 h-px bg-border" />
-            </div>
-            <Leaderboard backendUrl={BACKEND_URL} />
+        {/* Pipeline / Result / Error — below form */}
+        <div className="mb-20">
+          {state.step === "running" && (
+            <VerifyPipeline
+              sessionId={state.sessionId}
+              backendUrl={BACKEND_URL}
+              onComplete={handleComplete}
+              onError={(msg) => setState({ step: "error", message: msg })}
+            />
+          )}
+          {state.step === "report" && (
+            <VerifyReport
+              result={state.result}
+              onReset={handleReset}
+              backendUrl={BACKEND_URL}
+            />
+          )}
+          {state.step === "error" && (
+            <VerifyError
+              message={state.message}
+              onRetry={handleReset}
+            />
+          )}
+        </div>
+
+        {/* Leaderboard */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="font-mono text-[10px] tracking-[2px] text-brand uppercase">
+              {t.verify.leaderboard.label}
+            </span>
+            <div className="flex-1 h-px bg-border" />
           </div>
+          <Leaderboard backendUrl={BACKEND_URL} />
         </div>
       </div>
     </section>

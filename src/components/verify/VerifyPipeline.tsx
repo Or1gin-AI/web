@@ -24,9 +24,9 @@ interface VerifyPipelineProps {
 }
 
 const statusConfig = {
-  pass: { bg: "bg-[rgba(107,143,113,0.08)]", icon: "text-[#6b8f71]", symbol: "\u2713" },
-  warn: { bg: "bg-[rgba(184,148,74,0.08)]", icon: "text-[#b8944a]", symbol: "!" },
-  fail: { bg: "bg-[rgba(184,92,92,0.08)]", icon: "text-[#b85c5c]", symbol: "\u2717" },
+  pass: { bg: "bg-[rgba(45,138,86,0.08)]", icon: "text-[#2d8a56]", symbol: "\u2713" },
+  warn: { bg: "bg-[rgba(217,119,6,0.08)]", icon: "text-[#d97706]", symbol: "!" },
+  fail: { bg: "bg-[rgba(197,48,48,0.08)]", icon: "text-[#c53030]", symbol: "\u2717" },
   running: { bg: "bg-brand-light", icon: "text-brand animate-pulse", symbol: "\u25cf" },
   skip: { bg: "", icon: "text-text-faint", symbol: "\u25cb" },
 } as const;
@@ -40,7 +40,7 @@ export default function VerifyPipeline({
   const { t } = useLocale();
   const [tests, setTests] = useState<TestEntry[]>([]);
   const [currentPhase, setCurrentPhase] = useState(1);
-  const [totalPhases] = useState(4);
+  const [totalPhases] = useState(5);
   const [expandedTest, setExpandedTest] = useState<string | null>(null);
   const esRef = useRef<EventSource | null>(null);
 
@@ -90,6 +90,7 @@ export default function VerifyPipeline({
               confidence: data.confidence,
               stats: data.stats,
               results: data.results,
+              quality: data.quality,
             });
             break;
           }
@@ -125,7 +126,7 @@ export default function VerifyPipeline({
   };
 
   return (
-    <div className="bg-bg-card border border-border rounded-xl p-7">
+    <div className="bg-bg-card border border-border rounded-2xl p-6">
       <div className="flex items-center justify-between mb-4">
         <span className="font-serif text-[15px] text-text">
           {t.verify.pipeline.verifying}
@@ -135,13 +136,18 @@ export default function VerifyPipeline({
         </span>
       </div>
 
-      <div className="h-[3px] bg-bg-alt rounded-full overflow-hidden mb-6">
-        <motion.div
-          className="h-full bg-brand rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        />
+      <div className="flex items-center gap-3 mb-6">
+        <div className="flex-1 h-1 bg-bg-alt rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-brand rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          />
+        </div>
+        <span className="text-[12px] font-mono text-text-muted w-10 text-right">
+          {Math.round(progress)}%
+        </span>
       </div>
 
       <div className="space-y-5">
