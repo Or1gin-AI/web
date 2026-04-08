@@ -59,6 +59,7 @@ const fadeUp: Variants = {
 export default function VerifyPage() {
   const { t } = useLocale();
   const [state, setState] = useState<VerifyState>({ step: "form" });
+  const [loading, setLoading] = useState(false);
 
   const handleStart = async (
     baseUrl: string,
@@ -66,6 +67,7 @@ export default function VerifyPage() {
     model: string,
     mode: "full" | "quick"
   ) => {
+    setLoading(true);
     try {
       const res = await fetch(`${BACKEND_URL}/api/verify/start`, {
         method: "POST",
@@ -76,6 +78,8 @@ export default function VerifyPage() {
       setState({ step: "running", sessionId: data.sessionId });
     } catch (err: any) {
       setState({ step: "error", message: err.message || "无法连接到验证服务" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -132,7 +136,7 @@ export default function VerifyPage() {
               <div className="flex-1 h-px bg-border" />
             </div>
             <div className="md:sticky md:top-24">
-              {state.step === "form" && <VerifyForm onStart={handleStart} />}
+              {state.step === "form" && <VerifyForm onStart={handleStart} loading={loading} />}
               {state.step === "running" && (
                 <VerifyPipeline
                   sessionId={state.sessionId}

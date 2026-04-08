@@ -6,6 +6,7 @@ import { useLocale } from "@/i18n/context";
 
 interface VerifyFormProps {
   onStart: (baseUrl: string, apiKey: string, model: string, mode: "full" | "quick") => void;
+  loading?: boolean;
 }
 
 const fadeUp: Variants = {
@@ -13,13 +14,13 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-export default function VerifyForm({ onStart }: VerifyFormProps) {
+export default function VerifyForm({ onStart, loading }: VerifyFormProps) {
   const { t } = useLocale();
   const [baseUrl, setBaseUrl] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [model, setModel] = useState("claude-opus-4-6-20260401");
 
-  const disabled = !baseUrl.trim() || !apiKey.trim();
+  const disabled = !baseUrl.trim() || !apiKey.trim() || !!loading;
 
   return (
     <motion.div
@@ -83,14 +84,14 @@ export default function VerifyForm({ onStart }: VerifyFormProps) {
             onClick={() => onStart(baseUrl, apiKey, model, "full")}
             className="flex-1 py-2.5 bg-dark text-bg text-[13px] rounded-lg hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {t.verify.form.fullAudit}
+            {loading ? "正在连接..." : t.verify.form.fullAudit}
           </button>
           <button
             disabled={disabled}
             onClick={() => onStart(baseUrl, apiKey, model, "quick")}
             className="flex-1 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded-lg hover:border-brand transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {t.verify.form.quickScan}
+            {loading ? "正在连接..." : t.verify.form.quickScan}
           </button>
         </div>
       </div>
