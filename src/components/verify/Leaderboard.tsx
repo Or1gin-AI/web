@@ -66,10 +66,16 @@ export default function Leaderboard({ backendUrl }: LeaderboardProps) {
     setLoading(true);
 
     fetch(`${backendUrl}/api/verify/leaderboard?tab=${tab}&limit=20`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then((json: LeaderboardData) => {
-        if (!cancelled) {
+        if (!cancelled && json?.entries) {
           setData(json);
+          setLoading(false);
+        } else if (!cancelled) {
+          setData(null);
           setLoading(false);
         }
       })
