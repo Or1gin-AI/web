@@ -87,7 +87,29 @@ export default function VerifyPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ baseUrl, apiKey, model, mode }),
       });
-      const data = await res.json();
+
+      const raw = await res.text();
+      let data: { sessionId?: string; message?: string | string[] } | null = null;
+
+      if (raw) {
+        try {
+          data = JSON.parse(raw) as { sessionId?: string; message?: string | string[] };
+        } catch {
+          data = null;
+        }
+      }
+
+      if (!res.ok) {
+        const message = Array.isArray(data?.message)
+          ? data.message.join(", ")
+          : data?.message || raw || `验证服务返回 ${res.status}`;
+        throw new Error(message);
+      }
+
+      if (!data?.sessionId) {
+        throw new Error("验证服务未返回有效 sessionId");
+      }
+
       setState({ step: "running", sessionId: data.sessionId });
     } catch (err: any) {
       setState({ step: "error", message: err.message || "无法连接到验证服务" });
