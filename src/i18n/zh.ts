@@ -80,6 +80,7 @@ export const zh = {
   download: {
     label: "DOWNLOAD",
     title: "下载 OriginAI 客户端",
+    clientCta: "下载客户端",
     download: "下载",
     allReleases: "查看所有版本",
     telegram: "加入 Telegram 社群",

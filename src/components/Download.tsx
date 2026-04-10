@@ -49,11 +49,10 @@ export default function Download() {
   const { t } = useLocale();
   const [version, setVersion] = useState("");
   const [downloads, setDownloads] = useState<PlatformDownloads>({});
-  const [currentOS, setCurrentOS] = useState<OS>("mac");
+  const [currentOS] = useState<OS>(() => detectOS());
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setCurrentOS(detectOS());
     fetch("https://api.github.com/repos/Or1gin-AI/app/releases/latest")
       .then((r) => r.json())
       .then((data) => {
@@ -97,7 +96,7 @@ export default function Download() {
   ];
 
   return (
-    <section id="download" className="py-20 px-6">
+    <section id="download" className="scroll-mt-24 py-20 px-6">
       <SectionHeader label={t.download.label} title={t.download.title} />
 
       {version && (

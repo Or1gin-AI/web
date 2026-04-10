@@ -6,6 +6,39 @@ import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import Image from "next/image";
 import { useLocale } from "@/i18n/context";
 
+function LocaleToggle({
+  locale,
+  onToggle,
+}: {
+  locale: "en" | "zh";
+  onToggle: () => void;
+}) {
+  return (
+    <div className="flex items-center bg-border/40 rounded-full p-[2px]">
+      <button
+        onClick={onToggle}
+        className={`text-[11px] px-2.5 py-[3px] rounded-full transition-all duration-200 cursor-pointer ${
+          locale === "en"
+            ? "bg-dark text-bg"
+            : "text-text-muted hover:text-text"
+        }`}
+      >
+        EN
+      </button>
+      <button
+        onClick={onToggle}
+        className={`text-[11px] px-2.5 py-[3px] rounded-full transition-all duration-200 cursor-pointer ${
+          locale === "zh"
+            ? "bg-dark text-bg"
+            : "text-text-muted hover:text-text"
+        }`}
+      >
+        中
+      </button>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const { locale, setLocale, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +62,7 @@ export default function Navbar() {
   const handleClick = (href: string) => {
     setMobileOpen(false);
     if (href.startsWith("/")) {
-      window.location.href = `/${locale}${href}`;
+      window.location.assign(`/${locale}${href}`);
       return;
     }
     if (href === "#whitepaper") {
@@ -41,31 +74,6 @@ export default function Navbar() {
   };
 
   const toggleLocale = () => setLocale(locale === "en" ? "zh" : "en");
-
-  const LocaleToggle = () => (
-    <div className="flex items-center bg-border/40 rounded-full p-[2px]">
-      <button
-        onClick={toggleLocale}
-        className={`text-[11px] px-2.5 py-[3px] rounded-full transition-all duration-200 cursor-pointer ${
-          locale === "en"
-            ? "bg-dark text-bg"
-            : "text-text-muted hover:text-text"
-        }`}
-      >
-        EN
-      </button>
-      <button
-        onClick={toggleLocale}
-        className={`text-[11px] px-2.5 py-[3px] rounded-full transition-all duration-200 cursor-pointer ${
-          locale === "zh"
-            ? "bg-dark text-bg"
-            : "text-text-muted hover:text-text"
-        }`}
-      >
-        中
-      </button>
-    </div>
-  );
 
   return (
     <nav
@@ -93,6 +101,12 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+          <button
+            onClick={() => handleClick("#download")}
+            className="text-[12px] px-5 py-2 border border-brand/35 text-text-secondary rounded cursor-pointer hover:border-brand hover:text-text transition-colors"
+          >
+            {t.download.clientCta}
+          </button>
           <a
             href="https://wt.ls/origin-ai"
             target="_blank"
@@ -101,7 +115,7 @@ export default function Navbar() {
           >
             {t.nav.cta}
           </a>
-          <LocaleToggle />
+          <LocaleToggle locale={locale} onToggle={toggleLocale} />
         </div>
 
         <button
@@ -130,6 +144,12 @@ export default function Navbar() {
                   {link.label}
                 </button>
               ))}
+              <button
+                onClick={() => handleClick("#download")}
+                className="text-[13px] px-5 py-2.5 border border-brand/35 text-text-secondary rounded w-fit cursor-pointer hover:border-brand hover:text-text transition-colors"
+              >
+                {t.download.clientCta}
+              </button>
               <a
                 href="https://wt.ls/origin-ai"
                 target="_blank"
@@ -139,7 +159,7 @@ export default function Navbar() {
                 {t.nav.cta}
               </a>
               <div className="pt-2 border-t border-border">
-                <LocaleToggle />
+                <LocaleToggle locale={locale} onToggle={toggleLocale} />
               </div>
             </div>
           </motion.div>

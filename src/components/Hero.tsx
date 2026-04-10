@@ -22,6 +22,11 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   const { t } = useLocale();
+
+  const scrollToDownload = () => {
+    document.querySelector("#download")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="flex items-center justify-center px-6 py-24 md:py-36">
       <motion.div
@@ -60,7 +65,7 @@ export default function Hero() {
 
         <motion.div
           variants={fadeUp}
-          className="mt-8 flex gap-3 justify-center flex-wrap"
+          className="mt-8 flex gap-3 justify-center items-center flex-wrap"
         >
           <a
             href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer"
@@ -69,8 +74,14 @@ export default function Hero() {
             {t.hero.primaryCta}
           </a>
           <button
+            onClick={scrollToDownload}
+            className="px-7 py-2.5 border border-brand/40 text-text text-[13px] rounded hover:border-brand hover:text-brand transition-colors cursor-pointer"
+          >
+            {t.download.clientCta}
+          </button>
+          <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-whitepaper"))}
-            className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
+            className="px-4 py-2.5 text-text-secondary text-[13px] rounded hover:text-text transition-colors cursor-pointer"
           >
             {t.hero.secondaryCta}
           </button>
