@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
+import Download from "@/components/Download";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -23,6 +24,8 @@ export default function Home() {
         <Pricing />
         <div className="h-px bg-border mx-auto max-w-[1080px]" />
         <FAQ />
+        <div className="h-px bg-border mx-auto max-w-[1080px]" />
+        <Download />
         <div className="h-px bg-border mx-auto max-w-[1080px]" />
         <CTA />
       </main>

@@ -5,6 +5,7 @@ export const en = {
     pricing: "Pricing",
     faq: "FAQ",
     verify: "Verify",
+    download: "Download",
     cta: "Get Early Access",
   },
   hero: {
@@ -75,6 +76,13 @@ export const en = {
         a: "You're using an official Anthropic account, and all requests go directly to Anthropic's servers. We do not proxy APIs, rewrite requests, or substitute models. Every response you receive comes from the official model corresponding to your subscription tier — identical to using Claude directly in the US.",
       },
     ],
+  },
+  download: {
+    label: "DOWNLOAD",
+    title: "Download OriginAI",
+    download: "Download",
+    allReleases: "View all releases",
+    telegram: "Join our Telegram",
   },
   cta: {
     title: "Ready to Begin?",

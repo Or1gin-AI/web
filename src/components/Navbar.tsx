@@ -17,6 +17,7 @@ export default function Navbar() {
     { label: t.nav.pricing, href: "#pricing" },
     { label: t.nav.faq, href: "#faq" },
     { label: t.nav.verify, href: "/verify" },
+    { label: t.nav.download, href: "#download" },
   ];
 
   useEffect(() => {

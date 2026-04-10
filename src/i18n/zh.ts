@@ -5,6 +5,7 @@ export const zh = {
     pricing: "价格方案",
     faq: "FAQ",
     verify: "照妖镜",
+    download: "下载",
     cta: "抢先体验",
   },
   hero: {
@@ -75,6 +76,13 @@ export const zh = {
         a: "您使用的是 Anthropic 官方账号，所有请求直接发往 Anthropic 官方服务器。我们不做任何 API 转发、请求改写或模型替换。您收到的每一个回复都来自您所选套餐对应的官方模型，与在美国直接使用完全一致。",
       },
     ],
+  },
+  download: {
+    label: "DOWNLOAD",
+    title: "下载 OriginAI 客户端",
+    download: "下载",
+    allReleases: "查看所有版本",
+    telegram: "加入 Telegram 社群",
   },
   cta: {
     title: "准备好了吗？",
