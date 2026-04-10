@@ -174,7 +174,7 @@ export default function WhitepaperContentEn() {
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           {[
             { num: "1", Icon: RiBox3Line, title: "Install the OriginAI client", desc: "Download the open-source client\nmacOS / Windows / Linux", tag: "One-click install", highlight: false },
-            { num: "2", Icon: RiFlashlightLine, title: "Activate acceleration", desc: "Smart network optimization\nAutomatic OAuth login", tag: "Fully automatic", highlight: false },
+            { num: "2", Icon: RiFlashlightLine, title: "Activate acceleration", desc: "Smart network optimization\nAutomatic connection setup", tag: "Fully automatic", highlight: false },
             { num: "3", Icon: RiRobot2Line, title: "Use official Claude", desc: "Claude.ai\nClaude Code · 100% official", tag: "Get started", highlight: true },
           ].map((step, i) => (
             <div key={step.num} className="contents">
@@ -211,14 +211,9 @@ export default function WhitepaperContentEn() {
           The client runs a lightweight local proxy service that uses domain-based rules to precisely match Claude-related traffic (<code className="text-[13px] font-mono bg-bg-alt px-1 py-0.5 rounded">claude.ai</code>, <code className="text-[13px] font-mono bg-bg-alt px-1 py-0.5 rounded">api.anthropic.com</code>, etc.), routing it to US residential IP nodes. Non-Claude traffic never passes through our network — zero latency impact.
         </p>
 
-        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">Authentication Layer: OAuth, SMS & Email Management</h3>
-        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          Claude's login flow involves OAuth authorization, SMS verification codes, and email verification. The OriginAI client <strong className="text-text font-medium">automatically proxies OAuth authentication requests</strong>, while our backend manages SMS and email reception services. The entire verification process is fully transparent to the user — click "Log in" and everything completes automatically, with no manual verification codes or inbox checks required.
-        </p>
-
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">Account Layer: Fully Managed, Zero Maintenance</h3>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          Every account is purchased and renewed by OriginAI using legitimate US domestic credit cards. Account credentials are encrypted and stored on our control plane. The client obtains OAuth tokens through a secure channel and stores them in the operating system's native secure storage, with automatic periodic refresh. Users never need to worry about account maintenance, renewals, or password management — <strong className="text-text font-medium">it feels like using your own account, but without any operational overhead</strong>.
+          Every account is purchased and renewed by OriginAI using legitimate US domestic credit cards. Account credentials are encrypted and stored on our control plane. The client retrieves the necessary credentials through a secure channel and stores them in the operating system's native secure storage, with automatic periodic refresh. Users never need to worry about account maintenance, renewals, or password management — <strong className="text-text font-medium">it feels like using your own account, but without any operational overhead</strong>.
         </p>
 
       </section>
@@ -236,7 +231,7 @@ export default function WhitepaperContentEn() {
             { title: "100% Official Communication", desc: "You talk directly to Anthropic's servers. We only accelerate the network. Data is encrypted end-to-end — we are technically unable to access your content" },
             { title: "End-to-End Encryption", desc: "Data is encrypted on your device and decrypted at Anthropic. We only ever see ciphertext" },
             { title: "Open-Source Client", desc: "Source code is fully public. Anyone can audit and verify that there are no backdoors" },
-            { title: "Fully Managed Service", desc: "Account maintenance, renewals, OAuth login, and verification code handling are all taken care of by us. Just connect with one click — zero operational overhead" },
+            { title: "Fully Managed Service", desc: "Account maintenance, renewals, and connection setup are all taken care of by us. Just connect with one click — zero operational overhead" },
           ].map((item) => (
             <div key={item.title} className="bg-bg-card border border-border rounded-xl p-4">
               <h4 className="text-[13px] font-medium text-text mb-1">{item.title}</h4>

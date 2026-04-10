@@ -80,6 +80,7 @@ export const en = {
   download: {
     label: "DOWNLOAD",
     title: "Download OriginAI",
+    clientCta: "Download Client",
     download: "Download",
     allReleases: "View all releases",
     telegram: "Join our Telegram",

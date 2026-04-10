@@ -174,7 +174,7 @@ export default function WhitepaperContent() {
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           {[
             { num: "1", Icon: RiBox3Line, title: "安装 OriginAI 客户端", desc: "下载开源客户端\nmacOS / Windows / Linux", tag: "一键安装", highlight: false },
-            { num: "2", Icon: RiFlashlightLine, title: "一键开启加速", desc: "智能优化网络环境\n自动完成 OAuth 登录", tag: "自动完成", highlight: false },
+            { num: "2", Icon: RiFlashlightLine, title: "一键开启加速", desc: "智能优化网络环境\n自动建立稳定连接", tag: "自动完成", highlight: false },
             { num: "3", Icon: RiRobot2Line, title: "使用官方 Claude", desc: "Claude.ai\nClaude Code · 100% 官方", tag: "开始使用", highlight: true },
           ].map((step, i) => (
             <div key={step.num} className="contents">
@@ -211,14 +211,9 @@ export default function WhitepaperContent() {
           客户端在本地运行一个轻量代理服务，通过域名规则精确匹配 Claude 相关流量（<code className="text-[13px] font-mono bg-bg-alt px-1 py-0.5 rounded">claude.ai</code>、<code className="text-[13px] font-mono bg-bg-alt px-1 py-0.5 rounded">api.anthropic.com</code> 等），将其路由至部署在美国的家庭住宅 IP 节点。非 Claude 流量完全不经过我们的网络，零延迟影响。
         </p>
 
-        <h3 className="text-[15px] font-medium text-text mt-6 mb-3">认证层：OAuth、短信与邮件托管</h3>
-        <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          Claude 的登录流程涉及 OAuth 授权、短信验证码和邮件验证。OriginAI 客户端会<strong className="text-text font-medium">自动代理 OAuth 认证请求</strong>，同时我们的后端托管了 SMS 和邮件接收服务，所有验证流程对用户完全透明——点击「登录」后一切自动完成，无需手动输入验证码、无需访问邮箱。
-        </p>
-
         <h3 className="text-[15px] font-medium text-text mt-6 mb-3">账号层：全托管无感运维</h3>
         <p className="text-[14px] text-text-secondary leading-relaxed mb-4">
-          每个账号由 OriginAI 使用美国本土正规信用卡购买和续费。账号凭证加密存储在我们的控制平面，客户端通过安全通道获取 OAuth token 并存储在操作系统级安全存储中，定期自动刷新。用户无需关心账号维护、续费、密码管理等任何细节——<strong className="text-text font-medium">像使用自己的账号一样，但完全免去运维负担</strong>。
+          每个账号由 OriginAI 使用美国本土正规信用卡购买和续费。账号凭证加密存储在我们的控制平面，客户端通过安全通道获取必要凭证并存储在操作系统级安全存储中，定期自动更新。用户无需关心账号维护、续费、密码管理等任何细节——<strong className="text-text font-medium">像使用自己的账号一样，但完全免去运维负担</strong>。
         </p>
 
       </section>
@@ -236,7 +231,7 @@ export default function WhitepaperContent() {
             { title: "100% 官方通信", desc: "您直接与 Anthropic 服务器对话，我们只做网络加速，数据全程加密，技术上无法触碰您的内容" },
             { title: "端到端加密", desc: "数据在您的设备上加密，在 Anthropic 解密，我们只看到密文" },
             { title: "客户端开源", desc: "源码完全公开，任何人可审计验证我们没有后门" },
-            { title: "软件全托管", desc: "账号维护、续费、OAuth 登录、验证码接收全部由我们处理，您只需一键连接，零运维负担" },
+            { title: "软件全托管", desc: "账号维护、续费与连接配置全部由我们统一处理，您只需一键连接，零运维负担" },
           ].map((item) => (
             <div key={item.title} className="bg-bg-card border border-border rounded-xl p-4">
               <h4 className="text-[13px] font-medium text-text mb-1">{item.title}</h4>
