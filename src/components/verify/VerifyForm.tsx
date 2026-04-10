@@ -15,7 +15,7 @@ const fadeUp: Variants = {
 };
 
 const MODEL_PRESETS = [
-  { label: "Opus 4.6", value: "claude-opus-4-6-20260401" },
+  { label: "Opus 4.6", value: "claude-opus-4-6" },
   { label: "Sonnet 4.6", value: "claude-sonnet-4-6" },
   { label: "Haiku 4.5", value: "claude-haiku-4-5" },
 ];
@@ -27,7 +27,7 @@ export default function VerifyForm({ onStart, loading }: VerifyFormProps) {
   const { t } = useLocale();
   const [baseUrl, setBaseUrl] = useState("");
   const [apiKey, setApiKey] = useState("");
-  const [model, setModel] = useState("claude-opus-4-6-20260401");
+  const [model, setModel] = useState("claude-opus-4-6");
 
   const disabled = !baseUrl.trim() || !apiKey.trim() || !!loading;
 
