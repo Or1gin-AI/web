@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/docs/">
+  <meta name="description" content="OriginAI 新手教程，面向第一次使用的用户，覆盖登录、购买套餐、网络配置、激活账号和 Claude 登录。">
+  <title>OriginAI 新手教程 · Codex 版</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="mobile-header">
+    <div class="logo-area">
+      <img src="images/logo.png" alt="OriginAI Logo">
+      <span>OriginAI Docs</span>
+    </div>
+    <button class="hamburger" type="button" aria-label="打开目录">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="sidebar-overlay"></div>
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-row">
+        <img src="images/logo.png" alt="OriginAI Logo">
+        <div>
+          <h1>OriginAI</h1>
+          <div class="subtitle">Codex Beginner Guide</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-title">开始前</div>
+        <a class="nav-item active" data-section="overview" href="#overview">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 11.5 12 5l8 6.5V20H4v-8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9.5 20v-5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          总览
+        </a>
+        <a class="nav-item" data-section="prepare" href="#prepare">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 7h12M6 12h12M6 17h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          准备工作
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">主流程</div>
+        <a class="nav-item" data-section="originai-login" href="#originai-login">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M5 20c1.6-3 4-4.5 7-4.5S17.4 17 19 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          登录 OriginAI
+        </a>
+        <a class="nav-item" data-section="subscription" href="#subscription">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4 10h16" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          购买套餐
+        </a>
+        <a class="nav-item" data-section="network" href="#network">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 9a12 12 0 0 1 16 0M7 12a8 8 0 0 1 10 0M10 15a4 4 0 0 1 4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="18" r="1.4" fill="currentColor"/>
+          </svg>
+          网络配置
+        </a>
+        <a class="nav-item" data-section="claude-login" href="#claude-login">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 6h14v12H5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="m9 10 3 2 3-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          激活并登录 Claude
+        </a>
+        <a class="nav-item" data-section="usage" href="#usage">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 5h12v14H6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          开始使用
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">排错</div>
+        <a class="nav-item" data-section="troubleshooting" href="#troubleshooting">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 4 3.8 18h16.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M12 9v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="16.5" r="1" fill="currentColor"/>
+          </svg>
+          常见问题
+        </a>
+        <a class="nav-item" data-section="faq" href="#faq">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M9.5 9.5a2.5 2.5 0 1 1 4 2c-.9.6-1.5 1.2-1.5 2.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="16.8" r="1" fill="currentColor"/>
+          </svg>
+          FAQ
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      docs_codex · 面向第一次使用的用户
+    </div>
+  </aside>
+
+  <div class="progress-bar">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <main class="main">
+    <div class="main-inner">
+      <section class="doc-section hero" id="overview">
+        <div class="hero-badge">Codex 版新手路线</div>
+        <h2>第一次用 OriginAI，按这份教程走就够了</h2>
+        <p>这份文档按真实操作顺序写给小白用户：先登录 OriginAI，再购买套餐，再配置网络，接着激活 Claude 账号，最后再登录 Claude。你不需要先懂代理原理，先照着做，遇到问题再看排错。</p>
+
+        <div class="summary-grid">
+          <article class="summary-card">
+            <div class="summary-eyebrow">耗时</div>
+            <strong>5 到 10 分钟</strong>
+            <p>网络正常、节点可用时，一次走完通常不需要太久。</p>
+          </article>
+          <article class="summary-card">
+            <div class="summary-eyebrow">推荐路线</div>
+            <strong>TUN 优先，其他备选</strong>
+            <p>如果你使用机场客户端，优先走 <code>TUN</code>；自动检测和手动代理都放到备选。</p>
+          </article>
+          <article class="summary-card">
+            <div class="summary-eyebrow">关键判断</div>
+            <strong>绿色后先点用户名</strong>
+            <p>左上角显示网络正常后，先进入激活账号流程，再继续登录 Claude。</p>
+          </article>
+          <article class="summary-card">
+            <div class="summary-eyebrow">遇到问题</div>
+            <strong>优先重新配置网络</strong>
+            <p>大多数失败都不是账号坏了，而是代理链路中断了。</p>
+          </article>
+        </div>
+
+        <div class="callout tip">
+          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 4v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8.5 14.5A5 5 0 1 1 15.5 14.5c-.7.7-1.2 1.4-1.5 2.5h-4c-.3-1.1-.8-1.8-1.5-2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10 20h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <strong>先记住这一条：</strong> 如果你使用机场客户端，我们推荐先在机场软件里确认 <code>TUN</code> 已打开，再回到 OriginAI 里选择 <code>直连（TUN 模式）</code>。这是成功率最高、最适合新手的一条路线。
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="prepare">
+        <div class="section-header">
+          <div class="section-num">01</div>
+          <div>
+            <h2 class="section-title">开始前先准备好 <span class="section-title-en">Before You Start</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <p>先别急着点页面。准备工作做好，后面的登录、购买、网络配置和 Claude 激活会顺很多。尤其是网络这一步，新手最容易卡在“浏览器能打开，但桌面应用不通”。</p>
+
+          <div class="checklist-card">
+            <h3>开始前确认这 4 件事</h3>
+            <ul class="checklist">
+              <li>已经安装并打开 OriginAI 桌面端。</li>
+              <li>准备一个能接收验证码的邮箱；如果还没有账号，后面可以直接用它完成注册。</li>
+              <li>如果你使用机场客户端，先选好可用节点，优先亚洲线路，例如香港、新加坡、日本。</li>
+              <li>如果安全软件弹窗拦截 OriginAI 或代理软件，先选择允许。</li>
+            </ul>
+          </div>
+
+          <div class="callout info">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 10v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="7" r="1" fill="currentColor"/>
+            </svg>
+            <div>
+              <strong>先把注意力放在 TUN 上。</strong> 新手先走 <code>TUN 模式</code>；自动检测和手动代理都作为备选，只有明确需要时再处理端口。
+            </div>
+          </div>
+
+          <div class="screenshot-wrap">
+            <img class="screenshot" src="images/01-welcome.png" alt="OriginAI 欢迎页截图">
+            <div class="screenshot-caption">首次启动会先看到欢迎页，按提示进入下一步即可。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="originai-login">
+        <div class="section-header">
+          <div class="section-num">02</div>
+          <div>
+            <h2 class="section-title">先登录 OriginAI <span class="section-title-en">Sign In First</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <p>这一步登录的是 <strong>OriginAI 桌面端账号</strong>，不是 Claude 账号。后面的套餐、网络优化和 Claude 授权，都是从这里继续的。</p>
+
+          <div class="step-flow">
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">1</div>
+                <div class="step-card-title">打开登录页</div>
+              </div>
+              <div class="step-card-body">
+                <p>输入你注册 OriginAI 时使用的邮箱和密码。如果你刚安装完应用，通常欢迎页之后就会来到这一步。</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">2</div>
+                <div class="step-card-title">完成验证后点击登录</div>
+              </div>
+              <div class="step-card-body">
+                <p>页面右下区域会有 Cloudflare 验证。先把验证通过，再点击底部的 <strong>登录</strong> 按钮。</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">3</div>
+                <div class="step-card-title">没有账号就先注册</div>
+              </div>
+              <div class="step-card-body">
+                <p>如果你还是第一次使用，点底部的 <strong>点击注册</strong>，优先使用那个能接收验证码的邮箱。国内邮箱也可以，QQ 邮箱也行；如果只是忘记密码，直接走 <strong>忘记密码</strong>，不用重新建新号。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/02-login.png" alt="OriginAI 登录页截图">
+              <div class="screenshot-caption">这张图里能看到邮箱登录、Cloudflare 验证和底部的 <strong>点击注册</strong> 入口。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">4</div>
+                <div class="step-card-title">登录成功后进入账户页</div>
+              </div>
+              <div class="step-card-body">
+                <p>登录完成后，下一步通常就是账户状态和套餐页面。不要急着去登录 Claude，先把套餐和网络处理好。</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="callout tip">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8.5 14.5A5 5 0 1 1 15.5 14.5c-.7.7-1.2 1.4-1.5 2.5h-4c-.3-1.1-.8-1.8-1.5-2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 20h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <strong>想用 Claude Code 也一样要先走这一步。</strong> Claude Code 的 OAuth 登录链路，也依赖 OriginAI 桌面端先把网络和账户状态处理好。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="subscription">
+        <div class="section-header">
+          <div class="section-num">03</div>
+          <div>
+            <h2 class="section-title">先购买套餐 <span class="section-title-en">Buy a Plan First</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <p>登录完之后，先看自己是不是免费态。免费态通常不能直接进入完整使用流程，所以这里先把套餐买好；激活账号放到网络优化成功之后再做。</p>
+
+          <div class="step-flow">
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">1</div>
+                <div class="step-card-title">看当前套餐和到期时间</div>
+              </div>
+              <div class="step-card-body">
+                <p>进入账户状态页后，先看右侧的套餐信息和到期时间。如果你已经是 <strong>Pro Plan</strong>，说明套餐这一步大概率已经没问题。</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">2</div>
+                <div class="step-card-title">需要的话先购买或升级</div>
+              </div>
+              <div class="step-card-body">
+                <p>如果还是免费态，就先点 <strong>购买</strong> 或 <strong>升级</strong>。第一次使用通常直接选常用套餐即可，不需要一开始就买很高档位。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/13-account-pricing.png" alt="账户状态和套餐页面截图">
+              <div class="screenshot-caption">这个页面同时能看到当前套餐、到期时间和购买入口。先把套餐处理完，再去配置网络。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">3</div>
+                <div class="step-card-title">买完后先去配置网络</div>
+              </div>
+              <div class="step-card-body">
+                <p>套餐准备好后，先继续走 <strong>配置网络</strong>。不要在这里直接跳去注册 Claude，正确顺序是 <strong>购买套餐 → 网络配置 → 激活账号</strong>。</p>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="doc-section" id="network">
+        <div class="section-header">
+          <div class="section-num">04</div>
+          <div>
+            <h2 class="section-title">网络配置是关键一步 <span class="section-title-en">Network Setup</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <p>这一步最重要，也最容易把小白卡住。你可以先忘掉“代理原理”这件事，只需要记住一条选择规则：<strong>先选 TUN；如果界面显示异常，再回机场检查 TUN 有没有打开</strong>。</p>
+
+          <div class="screenshot-wrap">
+            <img class="screenshot" src="images/03-network-ok.jpg" alt="网络环境正常页面截图">
+            <div class="screenshot-caption">海外用户通常可以直接检测到平台提供的美国住宅链路；如果你走机场，后面优先按 TUN 路线继续。</div>
+          </div>
+
+          <h3>三种连接方式怎么选</h3>
+
+          <div class="mode-grid">
+            <article class="mode-card recommended">
+              <div class="mode-badge">主推</div>
+              <h4>直连（TUN 模式）</h4>
+              <p>这是主推方案。对绝大多数用户最友好，也最不容易踩端口和系统代理的坑；如果页面异常，先回机场确认 <code>TUN</code> 是否已经打开。</p>
+            </article>
+
+            <article class="mode-card">
+              <div class="mode-badge">备选</div>
+              <h4>自动检测</h4>
+              <p>适合你本地网络已经很稳定、自动检测也能正常识别的情况。能直达时可以用它，但不是主推路线。</p>
+            </article>
+
+            <article class="mode-card">
+              <div class="mode-badge">备用方案</div>
+              <h4>手动设置代理</h4>
+              <p>这是最后备选。只有在自动检测失败、而且你明确知道本地代理地址和端口时才使用，常见填写方式是 <code>127.0.0.1:7890</code>。</p>
+            </article>
+          </div>
+
+          <div class="callout tip">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8.5 14.5A5 5 0 1 1 15.5 14.5c-.7.7-1.2 1.4-1.5 2.5h-4c-.3-1.1-.8-1.8-1.5-2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 20h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <strong>机场用户的推荐动作：</strong> 优先选亚洲节点，例如香港、新加坡、日本，然后在 Clash、Clash Verge、ClashX、Stash、Surge、V2rayN 这类客户端里确认 <code>TUN</code> 已打开，再回 OriginAI 选择 <code>直连（TUN 模式）</code>。
+            </div>
+          </div>
+
+          <div class="step-flow">
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">1</div>
+                <div class="step-card-title">先选亚洲节点并确认 TUN 已开</div>
+              </div>
+              <div class="step-card-body">
+                <p>如果你走机场，优先选亚洲线路，例如香港、新加坡、日本。然后先回客户端确认 <strong>TUN</strong> 已打开，再来配置 OriginAI。</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">2</div>
+                <div class="step-card-title">进入连接方式页先选 TUN</div>
+              </div>
+              <div class="step-card-body">
+                <p>点击 <strong>配置网络</strong> 后，会来到连接方式选择页。你不确定时，就优先选 <strong>直连（TUN 模式）</strong>，不要自己猜。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/04-connection-mode.png" alt="连接方式选择页面截图">
+              <div class="screenshot-caption">这里直接选 <strong>直连（TUN 模式）</strong>；自动检测和手动代理都只是备选。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">3</div>
+                <div class="step-card-title">只有 TUN 不方便时才走备选</div>
+              </div>
+              <div class="step-card-body">
+                <p>如果 <strong>TUN</strong> 路线异常，先检查机场侧是否真的开好了；只有 TUN 不方便使用时，再考虑自动检测或手动代理。</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">4</div>
+                <div class="step-card-title">手动代理只填本机地址</div>
+              </div>
+              <div class="step-card-body">
+                <p>手动模式里填写的只会是 <strong>本机代理地址和端口</strong>，常见是 <code>127.0.0.1</code> 加 <code>7890</code>，不是节点订阅链接，也不是远端服务器地址。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/05-manual-proxy.jpg" alt="手动代理输入页面截图">
+              <div class="screenshot-caption">只有在你明确知道本地代理端口时，才使用手动设置代理。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">5</div>
+                <div class="step-card-title">等待优化完成</div>
+              </div>
+              <div class="step-card-body">
+                <p>点击开始优化后，应用会检测网络环境、启动代理服务并验证连接。中途别急着关掉代理软件，也别切节点。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+            <img class="screenshot" src="images/06-optimizing.jpg" alt="正在优化网络页面截图">
+            <div class="screenshot-caption">优化中会依次检测网络、启动代理服务并验证代理连接。</div>
+          </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">6</div>
+                <div class="step-card-title">看到优化完成，再进入主界面</div>
+              </div>
+              <div class="step-card-body">
+                <p>只有看到优化完成、左上角仍然是绿色网络状态时，才说明这条链路真的已经打通。下一段再去做激活账号。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+            <img class="screenshot" src="images/07-optimize-done.jpg" alt="优化完成页面截图">
+            <div class="screenshot-caption">看到这个页面，说明网络配置已经完成。接下来会进入主界面，再继续激活账号。</div>
+          </div>
+          </div>
+
+          <div class="callout warning">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4 3.8 18h16.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M12 9v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="16.5" r="1" fill="currentColor"/>
+            </svg>
+            <div>
+              <strong>新手最常见错误：</strong> 把节点订阅地址、服务器域名、机场官网地址填进手动代理。这里永远填的是本地代理地址，比如 <code>127.0.0.1:7890</code>。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="claude-login">
+        <div class="section-header">
+          <div class="section-num">05</div>
+          <div>
+            <h2 class="section-title">网络通了，先激活账号，再登录 Claude <span class="section-title-en">Activate, Then Sign In</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <p>网络优化完成后，不要立刻去点请求登录。先记住一件事：<strong>Claude 账户邮箱不是你注册 OriginAI 时填的邮箱，而是系统分配给你的那个 <code>originAI.cc</code> 邮箱</strong>。你先用这个邮箱去 <code>claude.ai</code> 注册，等走到手机号这一步，再回 OriginAI 拿新加坡手机号。</p>
+
+          <div class="step-flow">
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">1</div>
+                <div class="step-card-title">先复制分配给你的 originAI.cc 邮箱</div>
+              </div>
+              <div class="step-card-body">
+                <p>先到网页版 / 桌面版的登录入口页面。<strong>请求登录</strong> 上方那个可复制的邮箱，就是系统分配给你的 Claude 账户邮箱，通常是 <code>originAI.cc</code> 域名。后面整条链路都用这个邮箱，不要换成你自己的 OriginAI 注册邮箱。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/12-login-link.jpg" alt="请求登录链接页面截图">
+              <div class="screenshot-caption">这里可复制的那个 <strong>originAI.cc</strong> 邮箱，就是分配给你的 Claude 账户邮箱。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">2</div>
+                <div class="step-card-title">用这个邮箱去 Claude 官网注册</div>
+              </div>
+              <div class="step-card-body">
+                <p>打开 <code>claude.ai</code>，用刚才复制的那个 <code>originAI.cc</code> 邮箱继续注册。先把邮箱这一步走完。</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">3</div>
+                <div class="step-card-title">到要填手机号时，再回 OriginAI 点用户名</div>
+              </div>
+              <div class="step-card-body">
+                <p>当 Claude 注册流程走到手机号这一步时，再回 OriginAI 主界面。确认左上角还是绿色网络状态，然后点右上角用户名，回到账户状态页。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/10-main-page.jpg" alt="主界面截图">
+              <div class="screenshot-caption">先回这个主界面，点右上角用户名，不要直接点请求登录。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">4</div>
+                <div class="step-card-title">点激活账号，拿新加坡手机号</div>
+              </div>
+              <div class="step-card-body">
+                <p>回到账户状态页后，点击 <strong>激活账号</strong>。确认之后，系统会分配一个 <strong>新加坡手机号</strong> 给你。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/14-activate-confirm.jpg" alt="激活账号确认弹窗截图">
+              <div class="screenshot-caption">先确认激活，再继续进入分配手机号的阶段。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">5</div>
+                <div class="step-card-title">手机号国家选新加坡，号码带上 +65</div>
+              </div>
+              <div class="step-card-body">
+                <p>回到 <code>claude.ai</code> 的手机号页面，把手机号国家/地区选成 <strong>新加坡</strong>，然后把系统分配给你的号码连同 <strong>+65 区号</strong> 一起填进去，不要换成你自己的手机号。</p>
+              </div>
+            </article>
+
+            <div class="screenshot-wrap">
+              <img class="screenshot" src="images/15-phone-number.jpg" alt="激活账号手机号弹窗截图">
+              <div class="screenshot-caption">这里显示的就是系统分配的新加坡手机号，填写时要把 <strong>+65</strong> 一起带上。</div>
+            </div>
+
+            <article class="step-card">
+              <div class="step-card-header">
+                <div class="step-num">6</div>
+                <div class="step-card-title">验证码回来后再请求登录</div>
+              </div>
+              <div class="step-card-body">
+                <p>验证码通常会自动回填到激活弹窗里。等它回填完成后，再回 OriginAI 的登录入口点 <strong>请求登录</strong>，或在终端运行 <code>claude login</code> 继续授权。</p>
+              </div>
+            </article>
+
+            <div class="callout warning">
+              <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 4 3.8 18h16.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M12 9v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="16.5" r="1" fill="currentColor"/>
+              </svg>
+              <div>
+                <strong>这里最容易搞混：</strong> 邮箱始终用前面那个 Claude 账户邮箱；手机号始终用系统分配给你的新加坡号码，并且要带上 <strong>+65</strong>。保持窗口打开，等验证码自动回填。
+              </div>
+            </div>
+
+            <div class="screenshot-wrap">
+            <img class="screenshot" src="images/11-login-confirm.jpg" alt="登录确认弹窗截图">
+            <div class="screenshot-caption">继续之前再确认一次网络优化仍然是开启状态，否则后端拿不到正确的登录链路。</div>
+          </div>
+          </div>
+
+          <div class="callout info">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 10v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="7" r="1" fill="currentColor"/>
+            </svg>
+            <div>
+              <strong>顺序不要反。</strong> 先把 OriginAI 的账户、套餐、网络和激活流程跑通，再去登录 Claude。反过来做，排错会非常痛苦。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="usage">
+        <div class="section-header">
+          <div class="section-num">06</div>
+          <div>
+            <h2 class="section-title">进入主界面后看什么 <span class="section-title-en">After Login</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <p>当你顺利进入主界面，说明账户、套餐、网络和 Claude 登录至少已经打通了一次。接下来每次使用时，只要先看一下网络状态是否仍然正常，就能大幅减少折腾。</p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-item-icon">01</div>
+              <h4>优先看网络状态</h4>
+              <p>左上角如果是绿色，通常可以直接继续使用。如果变红，先别急着重登 Claude。</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-icon">02</div>
+              <h4>网页和命令行可并行使用</h4>
+              <p>网页版 / 桌面版和 Claude Code 是两条并行入口，网络通了之后都可以走。</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-icon">03</div>
+              <h4>套餐信息要定期看</h4>
+              <p>如果突然不能用了，除了网络问题，也要顺手看看套餐是否到期、激活次数是否不足。</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-icon">04</div>
+              <h4>别随便关代理软件</h4>
+              <p>很多“本来好好的突然不行了”，其实只是机场客户端被退出了，或者 TUN 被关了。</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="doc-section" id="troubleshooting">
+        <div class="section-header">
+          <div class="section-num">07</div>
+          <div>
+            <h2 class="section-title">最常见的 4 个问题 <span class="section-title-en">Troubleshooting</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <div class="faq-list">
+            <article class="faq-item">
+              <h4>优化失败，点重试还是不行</h4>
+              <p>先回机场软件检查节点是否还活着，再确认 <code>TUN</code> 有没有被关掉。如果你原来选的是自动检测，也可以改用 <code>直连（TUN 模式）</code> 或明确的手动代理端口重试。</p>
+            </article>
+
+            <article class="faq-item">
+              <h4>顶部显示网络连接异常</h4>
+              <p>这通常说明代理链路断了，不代表账号失效。最先检查代理软件是否还在运行、节点有没有切走、系统权限有没有把网络访问拦掉。</p>
+            </article>
+
+            <article class="faq-item">
+              <h4>浏览器能开网页，OriginAI 却不行</h4>
+              <p>这是典型的“小浏览器代理生效、桌面应用代理没接上”场景。对新手最直接的处理方式，是回到机场软件打开 <code>TUN 模式</code>，再在 OriginAI 里重新配置网络。</p>
+            </article>
+
+            <article class="faq-item">
+              <h4>激活验证码一直不出来</h4>
+              <p>先保持激活窗口不要关闭，确认注册地区选的是 <strong>新加坡</strong>，再等 30 到 90 秒；如果一直没有，再考虑换号或重新发起流程。频繁关闭窗口重开，反而会把流程搞乱。</p>
+            </article>
+          </div>
+
+          <div class="screenshot-wrap">
+            <img class="screenshot" src="images/08-optimize-fail.jpg" alt="优化失败页面截图">
+            <div class="screenshot-caption">优化失败时，优先排查节点、TUN 和本地代理，而不是反复登录退出。</div>
+          </div>
+
+          <div class="screenshot-wrap">
+            <img class="screenshot" src="images/09-network-error.png" alt="网络连接异常页面截图">
+            <div class="screenshot-caption">网络异常通常是代理中断，点重新配置后按推荐路线再走一遍即可。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="faq">
+        <div class="section-header">
+          <div class="section-num">08</div>
+          <div>
+            <h2 class="section-title">FAQ <span class="section-title-en">Quick Answers</span></h2>
+          </div>
+        </div>
+
+        <div class="doc-content">
+          <div class="faq-list">
+            <article class="faq-item">
+              <h4>手动代理的端口一定是 7890 吗？</h4>
+              <p>不一定。<code>7890</code> 只是常见值，具体要看你的代理软件设置。关键点不是“必须 7890”，而是“必须填本机代理端口，而不是远端地址”。</p>
+            </article>
+
+            <article class="faq-item">
+              <h4>我只想用 Claude Code，需要看完整份教程吗？</h4>
+              <p>建议至少看完登录 OriginAI、套餐激活和网络配置这三部分。Claude Code 的 OAuth 登录只是入口不同，底层依赖的链路是同一套。</p>
+            </article>
+
+            <article class="faq-item">
+              <h4>以后每次启动都要重新配网络吗？</h4>
+              <p>不一定。正常情况下配置成功后可以持续使用；只有当代理软件退出、节点失效、系统权限变化或顶部状态变红时，才需要重新配置。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <button class="back-to-top" type="button" aria-label="回到顶部">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="关闭预览">×</button>
+    <img src="" alt="">
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
