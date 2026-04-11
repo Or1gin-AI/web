@@ -6,14 +6,15 @@ export const zh = {
     faq: "FAQ",
     verify: "照妖镜",
     download: "下载",
-    cta: "抢先体验",
+    cta: "立即开始",
   },
   hero: {
     title: "见素抱朴，原生如初。",
     subtitle1: "正规邮箱账号 · 美国信用卡订阅 · 纯净家庭 IP",
     subtitle2: "告别封号，告别中转站，像美国人一样使用 Claude",
-    primaryCta: "抢先体验",
+    primaryCta: "立即开始",
     secondaryCta: "阅读白皮书",
+    docsCta: "使用教程",
   },
   whitepaperCard: {
     title: "OriginAI：极致的 Claude 体验",
@@ -50,6 +51,7 @@ export const zh = {
     openRouterNote: "比 OpenRouter 节省 80% 以上的使用成本，",
     openRouterLink: "详情请见白皮书",
     priceNote: "/月 官网价格",
+    teamNote: "用量更大，无五小时额度限制",
   },
   faq: {
     label: "FAQ",
@@ -80,15 +82,14 @@ export const zh = {
   download: {
     label: "DOWNLOAD",
     title: "下载 OriginAI 客户端",
-    clientCta: "下载客户端",
     download: "下载",
     allReleases: "查看所有版本",
     telegram: "加入 Telegram 社群",
   },
   cta: {
     title: "准备好了吗？",
-    subtitle: "加入 Waitlist，成为首批用户",
-    button: "加入 Waitlist",
+    subtitle: "下载客户端，开始使用 OriginAI",
+    button: "立即开始",
   },
   footer: {
     tagline: "享受极致的 AI 体验。",

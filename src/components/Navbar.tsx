@@ -50,7 +50,6 @@ export default function Navbar() {
     { label: t.nav.pricing, href: "#pricing" },
     { label: t.nav.faq, href: "#faq" },
     { label: t.nav.verify, href: "/verify" },
-    { label: t.nav.download, href: "#download" },
   ];
 
   useEffect(() => {
@@ -103,18 +102,10 @@ export default function Navbar() {
           ))}
           <button
             onClick={() => handleClick("#download")}
-            className="text-[12px] px-5 py-2 border border-brand/35 text-text-secondary rounded cursor-pointer hover:border-brand hover:text-text transition-colors"
-          >
-            {t.download.clientCta}
-          </button>
-          <a
-            href="https://wt.ls/origin-ai"
-            target="_blank"
-            rel="noopener noreferrer"
             className="text-[12px] px-5 py-2 bg-dark text-bg rounded cursor-pointer hover:opacity-90 transition-opacity"
           >
             {t.nav.cta}
-          </a>
+          </button>
           <LocaleToggle locale={locale} onToggle={toggleLocale} />
         </div>
 
@@ -146,18 +137,10 @@ export default function Navbar() {
               ))}
               <button
                 onClick={() => handleClick("#download")}
-                className="text-[13px] px-5 py-2.5 border border-brand/35 text-text-secondary rounded w-fit cursor-pointer hover:border-brand hover:text-text transition-colors"
-              >
-                {t.download.clientCta}
-              </button>
-              <a
-                href="https://wt.ls/origin-ai"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="text-[13px] px-5 py-2.5 bg-dark text-bg rounded w-fit cursor-pointer"
               >
                 {t.nav.cta}
-              </a>
+              </button>
               <div className="pt-2 border-t border-border">
                 <LocaleToggle locale={locale} onToggle={toggleLocale} />
               </div>

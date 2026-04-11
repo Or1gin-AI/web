@@ -6,14 +6,15 @@ export const en = {
     faq: "FAQ",
     verify: "Verify",
     download: "Download",
-    cta: "Get Early Access",
+    cta: "Get Started",
   },
   hero: {
     title: "Pure by Design, Authentic by Nature.",
     subtitle1: "Legitimate Accounts · US Credit Card Billing · Clean Residential IPs",
     subtitle2: "No bans, no middlemen — use Claude like an American",
-    primaryCta: "Get Early Access",
+    primaryCta: "Get Started",
     secondaryCta: "Read Whitepaper",
+    docsCta: "Tutorials",
   },
   whitepaperCard: {
     title: "OriginAI: The Ultimate Claude Experience",
@@ -50,6 +51,7 @@ export const en = {
     openRouterNote: "Save over 80% compared to OpenRouter. ",
     openRouterLink: "See whitepaper for details",
     priceNote: "/mo official price",
+    teamNote: "Higher usage, no 5-hour usage cap",
   },
   faq: {
     label: "FAQ",
@@ -80,15 +82,14 @@ export const en = {
   download: {
     label: "DOWNLOAD",
     title: "Download OriginAI",
-    clientCta: "Download Client",
     download: "Download",
     allReleases: "View all releases",
     telegram: "Join our Telegram",
   },
   cta: {
     title: "Ready to Begin?",
-    subtitle: "Join the Waitlist and be among the first users",
-    button: "Join Waitlist",
+    subtitle: "Download the client and start using OriginAI",
+    button: "Get Started",
   },
   footer: {
     tagline: "The ultimate AI experience.",
