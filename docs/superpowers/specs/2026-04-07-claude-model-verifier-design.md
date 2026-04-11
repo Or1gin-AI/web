@@ -38,7 +38,7 @@
 |------|------|------|
 | Base URL | text | `https://api.example.com` |
 | API Key | password | `sk-ant-...`，附提示「密钥仅在检测期间保留于内存，不会被存储」|
-| 验证模型 | text | `claude-opus-4-6-20260401`，附提示「系统会自动检测 API 格式（Anthropic / OpenAI 兼容）」|
+| 验证模型 | text | `claude-opus-4-6`，附提示「系统会自动检测 API 格式（Anthropic / OpenAI 兼容）」|
 
 两个按钮：「完整审计 · 约 1 分钟」（主按钮）和「快速扫描」（次按钮）。
 
