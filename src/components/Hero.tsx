@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import Link from "next/link";
 import { useLocale } from "@/i18n/context";
 
 const stagger: Variants = {
@@ -22,6 +23,11 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   const { t } = useLocale();
+
+  const scrollToDownload = () => {
+    document.querySelector("#download")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="flex items-center justify-center px-6 py-24 md:py-36">
       <motion.div
@@ -60,20 +66,26 @@ export default function Hero() {
 
         <motion.div
           variants={fadeUp}
-          className="mt-8 flex gap-3 justify-center flex-wrap"
+          className="mt-8 flex gap-3 justify-center items-center flex-wrap"
         >
-          <a
-            href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer"
+          <button
+            onClick={scrollToDownload}
             className="px-7 py-2.5 bg-dark text-bg text-[13px] rounded hover:opacity-90 transition-opacity"
           >
             {t.hero.primaryCta}
-          </a>
+          </button>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-whitepaper"))}
-            className="px-7 py-2.5 border border-brand/40 text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
+            className="px-7 py-2.5 border border-brand/40 bg-white text-text-secondary text-[13px] rounded hover:border-brand transition-colors cursor-pointer"
           >
             {t.hero.secondaryCta}
           </button>
+          <Link
+            href="/docs"
+            className="px-7 py-2.5 bg-dark text-bg text-[13px] rounded hover:opacity-90 transition-opacity"
+          >
+            {t.hero.docsCta}
+          </Link>
         </motion.div>
       </motion.div>
     </section>

@@ -5,10 +5,10 @@ import AnimateOnScroll from "./AnimateOnScroll";
 import { useLocale } from "@/i18n/context";
 
 const plans = [
-  { name: "PRO", price: "$20", recommended: false, comingSoon: false, hasCta: true },
-  { name: "MAX", price: "$100 / $200", recommended: true, comingSoon: false, hasCta: true },
-  { name: "TEAM", price: "$25 / $125", recommended: false, comingSoon: true, hasCta: false },
-];
+  { name: "PRO", price: "$20", recommended: false },
+  { name: "TEAM", price: "$25 / $125", recommended: true },
+  { name: "MAX", price: "$100 / $200", recommended: false },
+] as const;
 
 export default function Pricing() {
   const { t } = useLocale();
@@ -22,30 +22,23 @@ export default function Pricing() {
             <AnimateOnScroll key={plan.name} delay={i * 0.1}>
               <div className={`relative bg-bg-card rounded-xl p-8 text-center ${
                 plan.recommended ? "border-2 border-brand" : "border border-border"
-              } ${plan.comingSoon ? "opacity-60" : ""}`}>
+              }`}>
                 {plan.recommended && (
                   <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-brand text-white text-[10px] px-3 py-0.5 rounded-full tracking-wider">
                     {t.pricing.recommended}
                   </span>
                 )}
-                {plan.comingSoon && (
-                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-text-muted text-white text-[10px] px-3 py-0.5 rounded-full tracking-wider">
-                    {t.pricing.comingSoon}
-                  </span>
-                )}
-                <p className={`text-[11px] tracking-[2px] mb-3 ${plan.recommended ? "text-brand" : "text-text-muted"}`}>
+                <p className={`text-[11px] tracking-[2px] mb-2 ${plan.recommended ? "text-brand" : "text-text-muted"}`}>
                   {plan.name}
                 </p>
                 <p className="font-serif text-[28px] font-light text-text">{plan.price}</p>
                 <p className="text-[11px] text-text-muted mt-1">{t.pricing.priceNote}</p>
-                <p className="text-[10px] text-text-faint mt-2">{t.pricing.platformFee}</p>
-                {plan.hasCta && (
-                  <a href="https://wt.ls/origin-ai" target="_blank" rel="noopener noreferrer" className={`block mt-5 py-2.5 rounded text-[12px] transition-opacity hover:opacity-90 ${
-                    plan.recommended ? "bg-dark text-bg" : "border border-brand/40 text-text-secondary"
-                  }`}>
-                    {t.pricing.choosePlan}
-                  </a>
+                {plan.name === "TEAM" && (
+                  <p className="text-[11px] text-brand mt-2">
+                    {t.pricing.teamNote}
+                  </p>
                 )}
+                <p className="text-[10px] text-text-faint mt-4">{t.pricing.platformFee}</p>
               </div>
             </AnimateOnScroll>
           ))}
