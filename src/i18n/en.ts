@@ -51,12 +51,20 @@ export const en = {
     openRouterNote: "Save over 80% compared to OpenRouter. ",
     openRouterLink: "See whitepaper for details",
     priceNote: "/mo official price",
-    teamNote: "Higher usage, no 5-hour usage cap",
+    serviceFeeLabel: "Flat Platform Service Fee",
+    serviceFeeNote: "/mo",
+    serviceFeeDesc: "Includes network optimization, residential IP, account upkeep",
+    limitedTag: "Limited Offer",
+    plusClaude: "+ Your choice of Claude subscription",
   },
   faq: {
     label: "FAQ",
     title: "Frequently Asked Questions",
     items: [
+      {
+        q: "Does OriginAI sell pre-made accounts, or do I use my own?",
+        a: "OriginAI does not sell any pre-made accounts — you always use your own Anthropic account. We guide you through registration using your personal Gmail or .edu email, paired with a high-quality real US phone number we provide (not a virtual / VoIP number) for phone verification. You then subscribe directly with Anthropic using your own payment method. This matters for several reasons: you retain full ownership of the account, credentials, conversation history, and billing; privacy and data ownership are unambiguous, with no risk of accounts being reclaimed, shared, or resold; and your usage pattern matches that of a normal US user, minimizing the chance of triggering risk controls. OriginAI focuses on the clean essentials — a pristine US residential IP path plus clean registration inputs. Everything else stays yours.",
+      },
       {
         q: "How does OriginAI's network optimization work?",
         a: "The OriginAI client intelligently identifies Claude-related traffic (claude.ai, api.anthropic.com) and routes it through premium US residential IP endpoints. Your other internet activity is completely unaffected — lower latency, smoother experience. We focus on optimizing the Claude network environment, and we do it exceptionally well.",
@@ -67,7 +75,7 @@ export const en = {
       },
       {
         q: "Will my account get banned?",
-        a: "We use legitimately purchased accounts paired with clean US residential IPs. The usage pattern is identical to that of a normal American user, making the risk of triggering risk controls extremely low. We also continuously monitor the health of every account and proactively address any anomalies to ensure uninterrupted service.",
+        a: "In practice, accounts registered with a personal Gmail or .edu address that consistently connect through OriginAI have seen zero bans to date. Two factors drive this: (1) the account itself is legitimate (real email, legitimate payment method), and (2) the network environment is clean (US residential IP, indistinguishable from a normal US user). Combined with our continuous account-health monitoring and anomaly alerts, the probability of tripping risk controls is pushed to an extremely low level — stability you can rely on long-term.",
       },
       {
         q: "What usage methods are supported?",
@@ -76,6 +84,38 @@ export const en = {
       {
         q: "How can I be sure I'm using the real model?",
         a: "You're using an official Anthropic account, and all requests go directly to Anthropic's servers. We do not proxy APIs, rewrite requests, or substitute models. Every response you receive comes from the official model corresponding to your subscription tier — identical to using Claude directly in the US.",
+      },
+      {
+        q: "Can I use OriginAI on a remote SSH server?",
+        a: "Yes. Run the OriginAI client on your local machine and use SSH's RemoteForward to reverse-tunnel the local proxy port to the remote host. For example, add `RemoteForward 7890 127.0.0.1:7890` to the target host block in your local ~/.ssh/config, reconnect, then on the remote run `export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890`. Claude Code CLI, curl, and the Python SDK on the server will then reach claude.ai and api.anthropic.com through your home residential IP — no extra proxy software needed on the remote.",
+      },
+      {
+        q: "Does OriginAI offer a paid top-up / account funding service?",
+        a: "Not at this time. You pay Anthropic directly with your own US-capable payment method. We are integrating a legitimate US prepaid-card channel and will offer it as an optional add-on in the future — announcements will go out on the website and our Telegram group.",
+      },
+      {
+        q: "Which payment channel do you recommend for the Claude subscription?",
+        a: "We strongly recommend subscribing through App Store (iOS) or Google Play (Android) in-app purchase — this is by far the most stable, lowest-risk path. Do not use virtual credit cards, crypto-funded cards, or third-party VCCs. These non-legitimate payment methods are one of the leading triggers for Anthropic account bans.",
+      },
+      {
+        q: "Which email should I use to register a Claude account?",
+        a: "Use your own long-standing Gmail or .edu (educational) email. Based on our testing, accounts registered with other mailboxes (Outlook, iCloud, ProtonMail, disposable emails, or niche domains) get banned at a very high rate — they may work at first but get swept up in later enforcement. Prefer a Gmail address with real usage history; .edu emails currently have the best track record.",
+      },
+      {
+        q: "Can OriginAI handle Claude's identity verification (KYC) for me?",
+        a: "Not directly — we do not perform KYC on your behalf. However, based on our real-world testing, the US residential IPs provided by OriginAI are clean enough that, when paired with a legitimate payment channel (App Store / Google Play in-app purchase), the vast majority of accounts never get prompted for KYC in normal use. KYC is essentially a compliance check Anthropic triggers on anomalous behavior — if you follow our guidance (legitimate email, legitimate payment, stable network environment), the trigger rate stays very low.",
+      },
+      {
+        q: "Any best practices when using Claude?",
+        a: "To minimize the risk of bans, anomaly-based risk controls, or KYC prompts, we recommend the following:\n\n• Keep the number of simultaneously logged-in devices small, and keep your device usage habits stable;\n• Always start the OriginAI client before logging in or using Claude services;\n• Do not jump straight to Max — start with Free or Pro and transition naturally over time;\n• Keep your network environment consistent; avoid frequently switching devices, regions, or routes;\n• Use Claude at a natural pace — do not run high-intensity sessions around the clock or burn through your quota continuously right after subscribing, as this can be flagged as abusive or reseller-style usage.",
+      },
+      {
+        q: "Can I get an invoice / receipt?",
+        a: "Yes. OriginAI issues proper invoices for the platform service fee we charge, available to both business and individual customers. After payment, contact us via support ticket or customer service with your billing title and invoice email. Note: the invoice covers only the OriginAI platform service fee — Claude subscription fees paid directly to Anthropic must be invoiced through Anthropic.",
+      },
+      {
+        q: "If my account gets banned, can I get a refund? Is there any guarantee?",
+        a: "Claude subscription fees are paid directly to Anthropic, so refunds go through Anthropic's official channels. If you follow our recommendation and subscribe via Apple App Store or Google Play in-app purchase, you can request a refund directly from Apple/Google the moment an account is banned — Anthropic will typically refund the full subscription amount. This is one of the key reasons we strongly recommend these legitimate payment channels. Subscriptions paid with virtual cards, crypto-funded cards, or other non-legitimate channels do not get this protection. The OriginAI platform service fee covers network service already delivered and is not refunded based on Anthropic account status — but paired with the channels above, overall risk stays well-controlled.",
       },
     ],
   },
